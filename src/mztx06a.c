@@ -18,7 +18,8 @@
 #define RGB565_MASK_GREEN    0x07E0
 #define RGB565_MASK_BLUE       0x001F
 
-#define MAXSINGLEPIXELS 400
+#define MAXSINGLEPIXELS 300
+
 
 #ifdef    ROTATE90
 #define XP    0x0201
@@ -592,7 +593,7 @@ void loadFrameBuffer_diff()
            // printf ("(%d, %d) - (%d, %d)\n",diffsx, diffsy, diffex, diffey);
             
             area = ((abs(diffex - diffsx)+1)*(1+abs(diffey-diffsy)));
-            printf("diff:%d, area:%d, cov:%f\n",numdiff, area,(1.0*numdiff)/area);
+           // printf("diff:%d, area:%d, cov:%f\n",numdiff, area,(1.0*numdiff)/area);
         }
         if (numdiff< 1000){
             for (i=diffsx; i<=diffex; i++){
@@ -652,7 +653,7 @@ void loadFrameBuffer_diff_320()
     int quickdiffmap [2][MAXSINGLEPIXELS];
     int diffsx, diffsy, diffex, diffey;
     int numdiff=0;
-    int area;
+    unsigned int isleep=0;
     
 	buffer = (unsigned char *) malloc(xsize * ysize * 2);
     fseek(infile, 0, 0);
@@ -689,7 +690,7 @@ void loadFrameBuffer_diff_320()
         flag=1-flag;
         diffex=diffey=0;
         diffsx=diffsy=65535;
-        
+        //calculate the rectangle where changes occur
         for(i=0; i < ysize; i++){
             for(j=0; j < xsize; j++) {
                offset =  (i * xsize+ j)*2;
@@ -699,6 +700,7 @@ void loadFrameBuffer_diff_320()
                 if (drawmap[1-flag][i][j] != p) {
                     drawmap[flag][i][j] = p;
                     diffmap[i][j]=1;
+                    
                     if (numdiff<MAXSINGLEPIXELS)
                     {
                             quickdiffmap[0][numdiff]=i;
@@ -729,30 +731,26 @@ void loadFrameBuffer_diff_320()
             //printf("diff:%d, area:%d, cov:%f\n",numdiff, area,(1.0*numdiff)/area);
         } */
         
-        //write individual pixels if there are less than 400 differents ones
+        //write individual pixels if there are less than 400 different ones
         if (numdiff < MAXSINGLEPIXELS){
-           /*  for (i=diffsx; i<=diffex; i++){
-                for (j=diffsy;j<=diffey; j++) {
-                    if (diffmap[i][j]!=0)
-                        write_dot(i,j,drawmap[flag][i][j]);
-                }
-            } */
-            
+                      
             for (i=0;i<numdiff;i++)
             {
                 write_dot(quickdiffmap[0][i],quickdiffmap[1][i],drawmap[flag][quickdiffmap[0][i]][quickdiffmap[1][i]]);    
-                //printf("quick\n");
-                usleep(10000);
+                //printf("quick: %i\n",numdiff);
+                  
                 
             }
             //usleep(70000L);
             
+            //fill complete rect
         } else{
+            //define rect points
             LCD_WR_CMD(XS,diffsy);
             LCD_WR_CMD(YS,diffsx);
-            LCD_WR_CMD(XE,diffey);
+            LCD_WR_CMD(XE,diffey); 
             LCD_WR_CMD(YE,diffex);
-            
+            //set initial pixel
             LCD_WR_CMD(XP,diffsy);
             LCD_WR_CMD(YP,diffsx);
             // LCD_WR_CMD( 0x003, 0x1238 );
@@ -760,7 +758,7 @@ void loadFrameBuffer_diff_320()
             LCD_WR_REG(0x202);
             LCD_CS_CLR;
             LCD_RS_SET;
-            //printf("slow\n");
+            //printf("slow: %i\n",numdiff);
             //printf ("(%d, %d) - (%d, %d)\n",diffsx, diffsy, diffex, diffey);
             for (i=diffsx; i<=diffex; i++){
                 for (j=diffsy;j<=diffey; j++) {
@@ -773,6 +771,17 @@ void loadFrameBuffer_diff_320()
         
         if (fread (buffer, xsize * ysize *2, sizeof(unsigned char), infile) != 1)
             printf ("Read < %d chars when loading file %s\n", hsize*vsize*3, "ss");
+        if (numdiff>0)
+            if (numdiff>30000)
+                isleep=50;
+            else
+                isleep=50000-(50000*numdiff/50000);
+        else
+            isleep=80000;
+        
+        //printf("numdiff: %i\t\tsleep %u\n",numdiff,isleep);
+        usleep(isleep);       
+        
     }
 }
 
@@ -1291,7 +1300,7 @@ void draw_circle(int x, int y, int r,int color)
 }
 
 
-int main (void)
+int main (int argc, char* argv[])
 {
     printf("bcm2835 init now\n");
     if (!bcm2835_init())
@@ -1324,7 +1333,17 @@ int main (void)
     //  for (;;)
     //{
 	LCD_Init();
-	loadFrameBuffer_diff_320();
+    if (argc>1)
+    {
+        if (strcmp(argv[1],"test")==0)
+        {
+            printf("test LCD\n");
+            LCD_test();
+        }
+    }
+	else
+        loadFrameBuffer_diff_320();
+        
 	//LCD_showbuffer();
 	//LCD_test();
 	//LCD_clear(RGB565(130,130,150));
