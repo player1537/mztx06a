@@ -18,6 +18,8 @@
 #define RGB565_MASK_GREEN    0x07E0
 #define RGB565_MASK_BLUE       0x001F
 
+#define MAXSINGLEPIXELS 300
+
 
 #ifdef    ROTATE90
 #define XP    0x0201
@@ -37,13 +39,15 @@
 #define YE    0x0213
 #define MAX_X    239
 #define MAX_Y    319
+
 #endif
 
-#define	SPICS	RPI_GPIO_P1_26	//7
-#define	SPIRS	RPI_GPIO_P1_21	//8
-#define	SPIRST	RPI_GPIO_P1_22	//25
+#define	SPICS	RPI_GPIO_P1_24	//GPIO08
+#define	SPIRS	RPI_GPIO_P1_22	//GPIO25
+#define	SPIRST	RPI_GPIO_P1_16	//GPIO23
 #define	SPISCL	RPI_GPIO_P1_23	//GPIO11
 #define	SPISCI	RPI_GPIO_P1_19	//GPIO10
+#define	LCDPWM RPI_GPIO_P1_12	//GPIO18
 #if 0
 #define LCD_CS_CLR	bcm2835_gpio_write(SPICS,0)
 #define LCD_RS_CLR	bcm2835_gpio_write(SPIRS,0)
@@ -62,12 +66,14 @@
 #define LCD_RST_CLR	bcm2835_gpio_clr(SPIRST)
 #define LCD_SCL_CLR	bcm2835_gpio_clr(SPISCL)
 #define LCD_SCI_CLR	bcm2835_gpio_clr(SPISCI)
+#define LCD_PWM_CLR	bcm2835_gpio_clr(LCDPWM)
 
 #define LCD_CS_SET	bcm2835_gpio_set(SPICS)
 #define LCD_RS_SET	bcm2835_gpio_set(SPIRS)
 #define LCD_RST_SET	bcm2835_gpio_set(SPIRST)
 #define LCD_SCL_SET	bcm2835_gpio_set(SPISCL)
 #define LCD_SCI_SET	bcm2835_gpio_set(SPISCI)
+#define LCD_PWM_SET	bcm2835_gpio_set(LCDPWM)
 #endif
 
 short color[]={0xf800,0x07e0,0x001f,0xffe0,0x0000,0xffff,0x07ff,0xf81f};
@@ -587,7 +593,7 @@ void loadFrameBuffer_diff()
            // printf ("(%d, %d) - (%d, %d)\n",diffsx, diffsy, diffex, diffey);
             
             area = ((abs(diffex - diffsx)+1)*(1+abs(diffey-diffsy)));
-            printf("diff:%d, area:%d, cov:%f\n",numdiff, area,(1.0*numdiff)/area);
+           // printf("diff:%d, area:%d, cov:%f\n",numdiff, area,(1.0*numdiff)/area);
         }
         if (numdiff< 1000){
             for (i=diffsx; i<=diffex; i++){
@@ -622,6 +628,7 @@ void loadFrameBuffer_diff()
         
         if (fread (buffer, xsize * ysize *2, sizeof(unsigned char), infile) != 1)
             printf ("Read < %d chars when loading file %s\n", hsize*vsize*3, "ss");
+	usleep(10);
     }
 }
 
@@ -643,9 +650,10 @@ void loadFrameBuffer_diff_320()
 	int ra,ga,ba;
     int drawmap[2][ysize][xsize];
     int diffmap[ysize][xsize];
+    int quickdiffmap [2][MAXSINGLEPIXELS];
     int diffsx, diffsy, diffex, diffey;
     int numdiff=0;
-    int area;
+    unsigned int isleep=0;
     
 	buffer = (unsigned char *) malloc(xsize * ysize * 2);
     fseek(infile, 0, 0);
@@ -682,7 +690,7 @@ void loadFrameBuffer_diff_320()
         flag=1-flag;
         diffex=diffey=0;
         diffsx=diffsy=65535;
-        
+        //calculate the rectangle where changes occur
         for(i=0; i < ysize; i++){
             for(j=0; j < xsize; j++) {
                offset =  (i * xsize+ j)*2;
@@ -692,6 +700,12 @@ void loadFrameBuffer_diff_320()
                 if (drawmap[1-flag][i][j] != p) {
                     drawmap[flag][i][j] = p;
                     diffmap[i][j]=1;
+                    
+                    if (numdiff<MAXSINGLEPIXELS)
+                    {
+                            quickdiffmap[0][numdiff]=i;
+                            quickdiffmap[1][numdiff]=j;
+                    }
                     drawmap[1-flag][i][j]=p;
                     numdiff++;
                     if ((i) < diffsx)
@@ -710,27 +724,33 @@ void loadFrameBuffer_diff_320()
             }
             
         }
-        if (numdiff > 400){
+       /*  if (numdiff > 400){
             // printf ("(%d, %d) - (%d, %d)\n",diffsx, diffsy, diffex, diffey);
             
             area = ((abs(diffex - diffsx)+1)*(1+abs(diffey-diffsy)));
             //printf("diff:%d, area:%d, cov:%f\n",numdiff, area,(1.0*numdiff)/area);
-        }
-        if (numdiff< 400){
-            for (i=diffsx; i<=diffex; i++){
-                for (j=diffsy;j<=diffey; j++) {
-                    if (diffmap[i][j]!=0)
-                        write_dot(i,j,drawmap[flag][i][j]);
-                }
+        } */
+        
+        //write individual pixels if there are less than 400 different ones
+        if (numdiff < MAXSINGLEPIXELS){
+                      
+            for (i=0;i<numdiff;i++)
+            {
+                write_dot(quickdiffmap[0][i],quickdiffmap[1][i],drawmap[flag][quickdiffmap[0][i]][quickdiffmap[1][i]]);    
+                //printf("quick: %i\n",numdiff);
+                  
+                
             }
             //usleep(70000L);
             
+            //fill complete rect
         } else{
+            //define rect points
             LCD_WR_CMD(XS,diffsy);
             LCD_WR_CMD(YS,diffsx);
-            LCD_WR_CMD(XE,diffey);
+            LCD_WR_CMD(XE,diffey); 
             LCD_WR_CMD(YE,diffex);
-            
+            //set initial pixel
             LCD_WR_CMD(XP,diffsy);
             LCD_WR_CMD(YP,diffsx);
             // LCD_WR_CMD( 0x003, 0x1238 );
@@ -738,7 +758,7 @@ void loadFrameBuffer_diff_320()
             LCD_WR_REG(0x202);
             LCD_CS_CLR;
             LCD_RS_SET;
-            
+            //printf("slow: %i\n",numdiff);
             //printf ("(%d, %d) - (%d, %d)\n",diffsx, diffsy, diffex, diffey);
             for (i=diffsx; i<=diffex; i++){
                 for (j=diffsy;j<=diffey; j++) {
@@ -751,6 +771,17 @@ void loadFrameBuffer_diff_320()
         
         if (fread (buffer, xsize * ysize *2, sizeof(unsigned char), infile) != 1)
             printf ("Read < %d chars when loading file %s\n", hsize*vsize*3, "ss");
+        if (numdiff>0)
+            if (numdiff>30000)
+                isleep=50;
+            else
+                isleep=50000-(50000*numdiff/50000);
+        else
+            isleep=80000;
+        
+        //printf("numdiff: %i\t\tsleep %u\n",numdiff,isleep);
+        usleep(isleep);       
+        
     }
 }
 
@@ -964,7 +995,7 @@ void LCD_Init()
 	LCD_WR_CMD( 0x009, 0x0000 );
 	LCD_WR_CMD( 0x00b, 0x0000 );
 	LCD_WR_CMD( 0x00c, 0x0000 );
-	LCD_WR_CMD( 0x00d, 0x0018 );
+	LCD_WR_CMD( 0x00d, 0x0008 );
 	/* LTPS control settings */
 	LCD_WR_CMD( 0x012, 0x0000 );
 	LCD_WR_CMD( 0x013, 0x0000 );
@@ -1269,7 +1300,7 @@ void draw_circle(int x, int y, int r,int color)
 }
 
 
-int main (void)
+int main (int argc, char* argv[])
 {
     printf("bcm2835 init now\n");
     if (!bcm2835_init())
@@ -1280,6 +1311,7 @@ int main (void)
     bcm2835_gpio_fsel(SPICS, BCM2835_GPIO_FSEL_OUTP) ;
     bcm2835_gpio_fsel(SPIRS, BCM2835_GPIO_FSEL_OUTP) ;
     bcm2835_gpio_fsel(SPIRST, BCM2835_GPIO_FSEL_OUTP) ;
+    bcm2835_gpio_fsel(LCDPWM, BCM2835_GPIO_FSEL_OUTP) ;
     
 #ifdef BCM2708SPI
 	bcm2835_spi_begin();
@@ -1293,6 +1325,7 @@ int main (void)
     bcm2835_gpio_fsel(SPISCL, BCM2835_GPIO_FSEL_OUTP) ;
     bcm2835_gpio_fsel(SPISCI, BCM2835_GPIO_FSEL_OUTP) ;
 #endif
+    LCD_PWM_CLR;
     printf ("Raspberry Pi MZTX06A LCD Testing...\n") ;
     printf ("http://jwlcd-tp.taobao.com\n") ;
     
@@ -1300,7 +1333,17 @@ int main (void)
     //  for (;;)
     //{
 	LCD_Init();
-	loadFrameBuffer_diff_320();
+    if (argc>1)
+    {
+        if (strcmp(argv[1],"test")==0)
+        {
+            printf("test LCD\n");
+            LCD_test();
+        }
+    }
+	else
+        loadFrameBuffer_diff_320();
+        
 	//LCD_showbuffer();
 	//LCD_test();
 	//LCD_clear(RGB565(130,130,150));
