@@ -724,13 +724,13 @@ void loadFrameBuffer_diff_320()
             }
             
         }
-       /*  if (numdiff > 400){
+         /*if (numdiff > MAXSINGLEPIXELS){
             // printf ("(%d, %d) - (%d, %d)\n",diffsx, diffsy, diffex, diffey);
             
             area = ((abs(diffex - diffsx)+1)*(1+abs(diffey-diffsy)));
             //printf("diff:%d, area:%d, cov:%f\n",numdiff, area,(1.0*numdiff)/area);
-        } */
-        
+        } 
+        */
         //write individual pixels if there are less than 400 different ones
         if (numdiff < MAXSINGLEPIXELS){
                       
