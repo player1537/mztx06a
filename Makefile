@@ -1,6 +1,6 @@
 SHELL := /bin/bash
 CC := gcc
-CFLAGS := -g -O3 -std=gnu11
+CFLAGS := -g -O3 -std=gnu11 -pedantic -Wall -Werror
 
 all: build/mztx06a
 
