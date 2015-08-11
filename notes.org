@@ -1,0 +1,29 @@
+* Used Functions
+  - [ ] void resize (int new_hsize, int new_vsize)
+  - [ ] void PGMSkipComments (FILE* infile, unsigned char* ch)
+  - [ ] unsigned int PGMGetVal (FILE* infile)
+  - [ ] void PGMLoadData (FILE *infile, const char *filename)
+  - [ ] void loadPGM (const char *filename)
+  - [X] void LCD_WR_REG(int index)
+  - [ ] int compare(const void *a, const void *b)
+  - [X] void LCD_WR_CMD(int index,int val)
+  - [X] void inline LCD_WR_Data(int val)
+  - [X] void write_dot(char dx,int dy,int color)
+  - [ ] void loadFrameBuffer_ave()
+  - [ ] void loadFrameBuffer_diff()
+  - [X] void loadFrameBuffer_diff_320()
+    write_dot
+  - [ ] void loadFrameBuffer()
+  - [X] void LCD_Init()
+  - [X] void LCD_test()
+  - [ ] void LCD_clear(int p)
+  - [ ] void LCD_showbuffer()
+  - [ ] void DisplayChar(char casc,char postion_x,int postion_y)
+  - [ ] void DisplayString(char *s,char x,char y)
+  - [ ] void DisplayGB2312(char gb,char postion_x,char postion_y)
+  - [ ] void DispSmallPic(int x, int y, int w, int h, const char *str)
+  - [ ] void draw_circle(int x, int y, int r,int color)
+  - [X] int main (int argc, char* argv[])
+    LCD_Init
+    LCD_test
+    loadFrameBuffer_diff_320
