@@ -38,63 +38,63 @@ print 'Press some buttons!\n'
 print 'Press PLUS and MINUS together to disconnect and quit.\n'
 
 wii.rpt_mode = cwiid.RPT_BTN
- 
+
 while True:
 
   buttons = wii.state['buttons']
 
   # If Plus and Minus buttons pressed
   # together then rumble and quit.
-  if (buttons - cwiid.BTN_PLUS - cwiid.BTN_MINUS == 0):  
+  if (buttons - cwiid.BTN_PLUS - cwiid.BTN_MINUS == 0):
     print '\nClosing connection ...'
     wii.rumble = 1
     time.sleep(1)
     wii.rumble = 0
-    exit(wii)  
-  
+    exit(wii)
+
   # Check if other buttons are pressed by
   # doing a bitwise AND of the buttons number
   # and the predefined constant for that button.
   if (buttons & cwiid.BTN_LEFT):
     print 'A'
-    time.sleep(button_delay)         
+    time.sleep(button_delay)
 
   if(buttons & cwiid.BTN_RIGHT):
     print 'D'
-    time.sleep(button_delay)          
+    time.sleep(button_delay)
 
   if (buttons & cwiid.BTN_UP):
-    print 'W'        
-    time.sleep(button_delay)          
-    
+    print 'W'
+    time.sleep(button_delay)
+
   if (buttons & cwiid.BTN_DOWN):
-    print 'S'      
-    time.sleep(button_delay)  
-    
+    print 'S'
+    time.sleep(button_delay)
+
   if (buttons & cwiid.BTN_1):
     print '1'
-    time.sleep(button_delay)          
+    time.sleep(button_delay)
 
   if (buttons & cwiid.BTN_2):
     print '2'
-    time.sleep(button_delay)          
+    time.sleep(button_delay)
 
   if (buttons & cwiid.BTN_A):
     print 'U'
-    time.sleep(button_delay)          
+    time.sleep(button_delay)
 
   if (buttons & cwiid.BTN_B):
     print 'X'
-    time.sleep(button_delay)          
+    time.sleep(button_delay)
 
   if (buttons & cwiid.BTN_HOME):
     print 'C'
-    time.sleep(button_delay)           
-    
+    time.sleep(button_delay)
+
   if (buttons & cwiid.BTN_MINUS):
     print '3'
-    time.sleep(button_delay)   
-    
+    time.sleep(button_delay)
+
   if (buttons & cwiid.BTN_PLUS):
     print '4'
     time.sleep(button_delay)

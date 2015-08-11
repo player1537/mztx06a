@@ -82,7 +82,7 @@ void LCD_WR_REG(int index)
 	bcm2835_spi_transfer(index>>8);
 	bcm2835_spi_transfer(index);
 #else
-    
+
 	for(i=0;i<16;i++)
 	{
 		LCD_SCL_CLR;
@@ -99,7 +99,7 @@ void LCD_WR_REG(int index)
 	}
 #endif
 	LCD_CS_SET;
-    
+
 }
 
 
@@ -182,7 +182,7 @@ void LCD_Init()
 	delay (100);
 	LCD_RST_SET;
 	delay (100);
-    
+
 	LCD_WR_CMD( 0x000, 0x0001 ); /* oschilliation start */
 	delay ( 1 );
 	/* Power settings */
@@ -194,11 +194,11 @@ void LCD_Init()
 	LCD_WR_CMD( 0x111, 0x0022 );
 	LCD_WR_CMD( 0x100, 0x0120 );
 	delay ( 2 );
-    
+
 	LCD_WR_CMD( 0x100, 0x3120 );
 	delay ( 8 );
 	/* Display control */
-    
+
 	LCD_WR_CMD( 0x002, 0x0000 );
 #ifdef	ROTATE90
 	LCD_WR_CMD( 0x001, 0x0000 );
@@ -219,10 +219,10 @@ void LCD_Init()
 	LCD_WR_CMD( 0x013, 0x0000 );
 	LCD_WR_CMD( 0x018, 0x0000 );
 	LCD_WR_CMD( 0x019, 0x0000 );
-    
+
 	LCD_WR_CMD( 0x203, 0x0000 );
 	LCD_WR_CMD( 0x204, 0x0000 );
-    
+
 	LCD_WR_CMD( 0x210, 0x0000 );
 	LCD_WR_CMD( 0x211, 0x00ef );
 	LCD_WR_CMD( 0x212, 0x0000 );
@@ -231,7 +231,7 @@ void LCD_Init()
 	LCD_WR_CMD( 0x215, 0x0000 );
 	LCD_WR_CMD( 0x216, 0x0000 );
 	LCD_WR_CMD( 0x217, 0x0000 );
-    
+
 	// Gray scale settings
 	LCD_WR_CMD( 0x300, 0x5343);
 	LCD_WR_CMD( 0x301, 0x1021);
@@ -243,17 +243,17 @@ void LCD_Init()
 	LCD_WR_CMD( 0x307, 0x0003);
 	LCD_WR_CMD( 0x308, 0x1201);
 	LCD_WR_CMD( 0x309, 0x050a);
-    
+
 	/* RAM access settings */
 	LCD_WR_CMD( 0x400, 0x4027 );
 	LCD_WR_CMD( 0x401, 0x0000 );
 	LCD_WR_CMD( 0x402, 0x0000 );	/* First screen drive position (1) */
 	LCD_WR_CMD( 0x403, 0x013f );	/* First screen drive position (2) */
 	LCD_WR_CMD( 0x404, 0x0000 );
-    
+
 	LCD_WR_CMD( 0x200, 0x0000 );
 	LCD_WR_CMD( 0x201, 0x0000 );
-    
+
 	LCD_WR_CMD( 0x100, 0x7120 );
 	LCD_WR_CMD( 0x007, 0x0103 );
 	delay( 1 );
@@ -273,13 +273,13 @@ int main (void)
     bcm2835_gpio_fsel(SPICS, BCM2835_GPIO_FSEL_OUTP) ;
     bcm2835_gpio_fsel(SPIRS, BCM2835_GPIO_FSEL_OUTP) ;
     bcm2835_gpio_fsel(SPIRST, BCM2835_GPIO_FSEL_OUTP) ;
-    
+
 #ifdef BCM2708SPI
 	bcm2835_spi_begin();
 	bcm2835_spi_setBitOrder(BCM2835_SPI_BIT_ORDER_MSBFIRST);
 	bcm2835_spi_setDataMode(BCM2835_SPI_MODE3);
 	bcm2835_spi_setClockDivider(BCM2835_SPI_CLOCK_DIVIDER_2);
-    
+
     //bcm2835_spi_chipSelect(BCM2835_SPI_CS1);
     //bcm2835_spi_setChipSelectPolarity(BCM2835_SPI_CS1,LOW);
 #else
@@ -288,7 +288,7 @@ int main (void)
 #endif
     printf ("Raspberry Pi MZTX06A LCD initialising...\n") ;
     printf ("http://jwlcd-tp.taobao.com\n") ;
-    
+
     //  loadPGM("etao.pbm");
     //  for (;;)
     //{
@@ -301,11 +301,10 @@ int main (void)
 	//LCD_QQ();
     //draw_circle(100,100,50,RGB565(130,30,220));
 	//draw_circle(200,10, 20,RGB565(100,2,23));
-	//draw_circle(30,160, 80, RGB565(22,134,100)); 
+	//draw_circle(30,160, 80, RGB565(22,134,100));
     //DisplayString("Windows",1,0);
 	//write_dot(10,10,0xffff);
 	//delay(500);
     //y}
     return 0 ;
 }
-

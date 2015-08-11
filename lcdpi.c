@@ -88,13 +88,13 @@ void resize (int new_hsize, int new_vsize)
 {
     char *new_value = (char *)malloc(new_hsize*new_vsize*3);
     int i;
-    
+
     for (i = 0; i < new_hsize*new_vsize*3; i++)
         new_value[i] = 0;
-    
+
     hsize = new_hsize;
     vsize = new_vsize;
-    
+
     if (value != NULL)
         free(value);
     value = new_value;
@@ -129,16 +129,16 @@ void PGMLoadData (FILE *infile, const char *filename)
     int i;
     long fp;
     buffer = (unsigned char *)malloc(hsize * vsize*3);
-    
+
     fp = -1*hsize*vsize*3;
     fseek(infile, fp, SEEK_END);
-    
+
     if (fread (buffer, hsize*vsize*3, sizeof(unsigned char), infile) != 1)
         printf ("Read < %d chars when loading file %s\n", hsize*vsize*3, filename);
-    
+
     for (i = 0; i < hsize*vsize*3; i++)
         value[i] = buffer[i];
-    
+
     free(buffer);
 }
 
@@ -147,23 +147,23 @@ void loadPGM (const char *filename)
     FILE* infile;
     unsigned char ch = ' ';
     int xsize=0, ysize=0, maxg=0;
-    
+
     infile = fopen (filename, "rb");
     if (infile == NULL)
         printf ("Unable to open file %s\n", filename);
-    
+
     // Look for type indicator
     while ((ch != 'P') && (ch != '#')) { ch = fgetc(infile); }
     PGMSkipComments(infile, &ch);
     char ftype = fgetc(infile); // get type, 5 or 6
-    
+
     // Look for x size, y size, max grey level
     xsize = (int)PGMGetVal(infile);
     ysize = (int)PGMGetVal(infile);
     maxg = (int)PGMGetVal(infile);
-    
+
     // Do some consistency checks
-    
+
     if ( (hsize <= 0) && (vsize <= 0) ) {
         resize (xsize, ysize);
         if (value == NULL)
@@ -174,7 +174,7 @@ void loadPGM (const char *filename)
             printf ("File dimensions conflict with image settings\n");
         }
     }
-    
+
     if (ftype == '7') {
         printf("File %s is of type PGM, is %d x %d with max gray level %d\n",
                filename, hsize, vsize, maxg);
@@ -185,7 +185,7 @@ void loadPGM (const char *filename)
                filename, hsize, vsize, maxg);
         PGMLoadData(infile, filename);
     }
-    
+
     fclose(infile);
 }
 
@@ -199,7 +199,7 @@ void LCD_WR_REG(int index)
 	bcm2835_spi_transfer(index>>8);
 	bcm2835_spi_transfer(index);
 #else
-    
+
 	for(i=0;i<16;i++)
 	{
 		LCD_SCL_CLR;
@@ -216,7 +216,7 @@ void LCD_WR_REG(int index)
 	}
 #endif
 	LCD_CS_SET;
-    
+
 }
 
 int compare(const void *a, const void *b)
@@ -302,7 +302,7 @@ void write_dot(char dx,int dy,int color)
 	LCD_WR_CMD(0x212,dy);
 	LCD_WR_CMD(0x211,dx);
 	LCD_WR_CMD(0x213,dy);
-    
+
 	LCD_WR_CMD(0x200,dx);
 	LCD_WR_CMD(0x201,dy);
 	LCD_WR_CMD(0x202,color);
@@ -350,17 +350,17 @@ void fb_load_640x480_zoom(FILE *infile)
             buffersize=640;
             break;
     }
-    
+
     // Read in framebuffer
     fseek(infile, 0, 0);
-    
+
     if (fread (buffer, 640*480*2, sizeof(unsigned char), infile) != 1)
         printf ("Read < %d chars when loading file /dev/fb0\n", 640*480*2);
-    
+
 //    numdiff=0;
 //    diffex=diffey=0;
 //    diffsx=diffsy=65535;
-    
+
     for(i=0; i < 480; i+=2){
         for(j=0; j < 640; j+=2) {
             offset =  (i * 640+ j)*2;
@@ -368,42 +368,42 @@ void fb_load_640x480_zoom(FILE *infile)
             r = (p & RGB565_MASK_RED) >> 11;
             g = (p & RGB565_MASK_GREEN) >> 5;
             b = (p & RGB565_MASK_BLUE);
-            
+
             r <<= 1;
             b <<= 1;
-            
+
             offset = ( (i+1) * 640 +j )*2;
             p=(buffer[offset+1] << 8) | buffer[offset];
             r1 = (p & RGB565_MASK_RED) >> 11;
             g1 = (p & RGB565_MASK_GREEN) >> 5;
             b1 = (p & RGB565_MASK_BLUE);
-            
+
             r += r1<<1;
             g += g1;
             b += b1 <<1;
-            
+
             offset = ( i*640 + j+1)*2;
             p=(buffer[offset+1] << 8) | buffer[offset];
             r1 = (p & RGB565_MASK_RED) >> 11;
             g1 = (p & RGB565_MASK_GREEN) >> 5;
             b1 = (p & RGB565_MASK_BLUE);
-            
+
             r += r1<<1;
             g += g1;
             b += b1 <<1;
-            
+
             offset=((i+1)*640 + j+1)*2;
             p=(buffer[offset+1] << 8) | buffer[offset];
             r1 = (p & RGB565_MASK_RED) >> 11;
             g1 = (p & RGB565_MASK_GREEN) >> 5;
             b1 = (p & RGB565_MASK_BLUE);
-            
+
             r += r1<<1;
             g += g1;
             b += b1 <<1;
-            
+
             p=RGB565(r, g, b);
-            
+
             drawmap[flag][i>>1][j>>1] = p;
 //            if (drawmap[1-flag][i>>1][j>>1] != p) {
 //                drawmap[flag][i>>1][j>>1] = p;
@@ -418,11 +418,11 @@ void fb_load_640x480_zoom(FILE *infile)
 //                    diffsy=j>>1;
 //                if ((j>>1)>diffey)
 //                    diffey = j >>1;
-//                
+//
 //            } else {
 //                diffmap[i>>1][j>>1]=0;
 //            }
-        }        
+        }
     }
 }
 
@@ -432,10 +432,10 @@ void fb_load_640x480_window(FILE *infile, int sx, int sy)
     int p;
 	int r1,g1,b1;
 	int r,g,b;
-    
+
     int i,j,k;
     unsigned long offset=0;
-    
+
     switch (buffersize){
         case 640:
             break;
@@ -451,14 +451,14 @@ void fb_load_640x480_window(FILE *infile, int sx, int sy)
     }
     // Read in framebuffer
     fseek(infile, 0, 0);
-    
+
     if (fread (buffer, 640*480*2, sizeof(unsigned char), infile) != 1)
         printf ("Read < %d chars when loading file /dev/fb0\n", 640*480*2);
-    
+
     //    numdiff=0;
     //    diffex=diffey=0;
     //    diffsx=diffsy=65535;
-    
+
     for(i=sy; i < sy+240; i++){
         for(j=sx; j < sx+320; j++) {
             offset =  (i * 640+ j)*2;
@@ -473,11 +473,11 @@ void fb_load_640x480_window(FILE *infile, int sx, int sy)
 void lcd_get_diff()
 {
     int i,j;
-    
+
     numdiff=0;
     diffex=diffey=0;
     diffsx=diffsy=65535;
-    
+
     for (i=0; i < 240; i++)
         for (j=0; j < 320; j++) {
             if (drawmap[1-flag][i][j] != drawmap[flag][i][j]) {
@@ -492,14 +492,14 @@ void lcd_get_diff()
                     diffsy=j;
                 if (j > diffey)
                     diffey = j;
-                
+
             } else {
                 diffmap[i][j]=0;
             }
         }
     diffwidth = diffey-diffsy+1;
     diffarea =  diffwidth*(diffex-diffsx+1);
-    
+
 }
 
 void lcd_buffer_flip()
@@ -525,10 +525,10 @@ void lcd_display_buf()
         LCD_WR_CMD(YS,diffsx);
         LCD_WR_CMD(XE,diffey);
         LCD_WR_CMD(YE,diffex);
-        
+
         LCD_WR_CMD(XP,diffsy);
         LCD_WR_CMD(YP,diffsx);
-    
+
         LCD_WR_REG(0x202);
         LCD_CS_CLR;
         LCD_RS_SET;
@@ -548,25 +548,25 @@ int kbhit(void)
     struct termios oldt, newt;
     int ch;
     int oldf;
-    
+
     tcgetattr(STDIN_FILENO, &oldt);
     newt = oldt;
     newt.c_lflag &= ~(ICANON | ECHO);
     tcsetattr(STDIN_FILENO, TCSANOW, &newt);
     oldf = fcntl(STDIN_FILENO, F_GETFL, 0);
     fcntl(STDIN_FILENO, F_SETFL, oldf | O_NONBLOCK);
-    
+
     ch = getchar();
-    
+
     tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
     fcntl(STDIN_FILENO, F_SETFL, oldf);
-    
+
     if(ch != EOF)
     {
         ungetc(ch, stdin);
         return 1;
     }
-    
+
     return 0;
 }
 
@@ -581,9 +581,9 @@ void *get_input()
         c = getchar();
         if (c==0|| c==255) exit(0);
         usleep(5000L);
-        
+
         // here is a lot of controlls
-    
+
         switch(tolower(c)) {
             case 'a' :
                 screen_mode=WINDOWED;
@@ -633,7 +633,7 @@ void *get_input()
                 break;
             case 0:
                 exit(0);
-                
+
         }
     }
 }
@@ -644,7 +644,7 @@ void lcd_run()
 
     quickbuf = (char *) malloc(sizeof(int)*320*240);
     int changeflag=0;
-    
+
     while (1 == 1){
         switch (screen_mode){
             case FULLSCREEN :
@@ -660,7 +660,7 @@ void lcd_run()
             diffarea = ((abs(diffex - diffsx)+1)*(1+abs(diffey-diffsy)));
 
             if (numdiff < 300 & numdiff * 1.0 / diffarea > 0.1) {
-                
+
 //                printf ("(%d, %d) - (%d, %d)\n",diffsx, diffsy, diffex, diffey);
                 if (diffex > 210) wy +=80;
                 if (diffey > 280) wx +=80;
@@ -674,7 +674,7 @@ void lcd_run()
             }
         }
         if (numdiff > 0){
-            
+
             lcd_display_buf();
 
             lcd_buffer_flip();
@@ -683,7 +683,7 @@ void lcd_run()
             diffarea = 8;
             usleep(40000);
         }
-        
+
         //usleep(10076800.0/(23+diffarea*diffarea));
 //        usleep(10000L);
         //  printf("current window (%d, %d)\n",wx, wy);
@@ -707,25 +707,25 @@ void loadFrameBuffer_diff()
     int flag;
 	int ra,ga,ba;
 
-    
+
 	buffer = (unsigned char *) malloc(xsize * ysize * 2);
     fseek(infile, 0, 0);
-    
+
     if (fread (buffer, xsize * ysize *2, sizeof(unsigned char), infile) != 1)
         printf ("Read < %d chars when loading file %s\n", hsize*vsize*3, "ss");
-    
+
     LCD_WR_CMD(XS,0x00);
     LCD_WR_CMD(YS,0x0000);
     LCD_WR_CMD(XE,MAX_X);
     LCD_WR_CMD(YE,MAX_Y);
-    
+
     LCD_WR_CMD(XP,0x0000);
     LCD_WR_CMD(YP,0x0000);
-    
+
     LCD_WR_REG(0x202);
     LCD_CS_CLR;
     LCD_RS_SET;
-    
+
     for (i=0; i < ysize/2; i++) {
         for(j=0; j< xsize/2; j++) {
             diffmap[i][j]=1;
@@ -736,9 +736,9 @@ void loadFrameBuffer_diff()
     }
 
     flag=1;
-    
+
     while (1) {
-        
+
         numdiff=0;
         flag=1-flag;
         diffex=diffey=0;
@@ -751,42 +751,42 @@ void loadFrameBuffer_diff()
                 r = (p & RGB565_MASK_RED) >> 11;
                 g = (p & RGB565_MASK_GREEN) >> 5;
                 b = (p & RGB565_MASK_BLUE);
-                
+
                 r <<= 1;
                 b <<= 1;
-                
+
                 offset = ( (i+1) * xsize +j )*2;
                 p=(buffer[offset+1] << 8) | buffer[offset];
                 r1 = (p & RGB565_MASK_RED) >> 11;
                 g1 = (p & RGB565_MASK_GREEN) >> 5;
                 b1 = (p & RGB565_MASK_BLUE);
-                
+
                 r += r1<<1;
                 g += g1;
                 b += b1 <<1;
-                
+
                 offset = ( i*xsize + j+1)*2;
                 p=(buffer[offset+1] << 8) | buffer[offset];
                 r1 = (p & RGB565_MASK_RED) >> 11;
                 g1 = (p & RGB565_MASK_GREEN) >> 5;
                 b1 = (p & RGB565_MASK_BLUE);
-                
+
                 r += r1<<1;
                 g += g1;
                 b += b1 <<1;
-                
+
                 offset=((i+1)*xsize + j+1)*2;
                 p=(buffer[offset+1] << 8) | buffer[offset];
                 r1 = (p & RGB565_MASK_RED) >> 11;
                 g1 = (p & RGB565_MASK_GREEN) >> 5;
                 b1 = (p & RGB565_MASK_BLUE);
-                
+
                 r += r1<<1;
                 g += g1;
                 b += b1 <<1;
-                
+
                 p=RGB565(r, g, b);
-                
+
                 //drawmap[flag][i>>1][j>>1] = p;
                 if (drawmap[1-flag][i>>1][j>>1] != p) {
                     drawmap[flag][i>>1][j>>1] = p;
@@ -801,16 +801,16 @@ void loadFrameBuffer_diff()
                         diffsy=j>>1;
                     if ((j>>1)>diffey)
                         diffey = j >>1;
-                    
+
                 } else {
                     diffmap[i>>1][j>>1]=0;
                 }
             }
-            
+
         }
         if (numdiff > 10){
            // printf ("(%d, %d) - (%d, %d)\n",diffsx, diffsy, diffex, diffey);
-            
+
             diffarea = ((abs(diffex - diffsx)+1)*(1+abs(diffey-diffsy)));
             printf("diff:%d, area:%d, cov:%f\n",numdiff, diffarea,(1.0*numdiff)/diffarea);
         }
@@ -822,13 +822,13 @@ void loadFrameBuffer_diff()
                 }
             }
             //usleep(70000L);
-            
+
         } else{
             LCD_WR_CMD(XS,diffsy);
             LCD_WR_CMD(YS,diffsx);
             LCD_WR_CMD(XE,diffey);
             LCD_WR_CMD(YE,diffex);
-            
+
             LCD_WR_CMD(XP,diffsy);
             LCD_WR_CMD(YP,diffsx);
             // LCD_WR_CMD( 0x003, 0x1238 );
@@ -842,9 +842,9 @@ void loadFrameBuffer_diff()
                 }
             }
         }
-        
+
         fseek(infile, 0, 0);
-        
+
         if (fread (buffer, xsize * ysize *2, sizeof(unsigned char), infile) != 1)
             printf ("Read < %d chars when loading file %s\n", hsize*vsize*3, "ss");
     }
@@ -866,32 +866,32 @@ void loadFrameBuffer()
 	long nowsum=0;
     int flag;
 	int ra,ga,ba;
-    
-    
-	
+
+
+
 	buffer = (unsigned char *) malloc(xsize * ysize * 2);
     while (1) {
         fp = 0;//-1 * xsize * ysize *2;
         fseek(infile, 0, 0);
-        
+
         if (fread (buffer, xsize * ysize *2, sizeof(unsigned char), infile) != 1)
             printf ("Read < %d chars when loading file %s\n", hsize*vsize*3, "ss");
-        
+
         value = buffer;
-        
+
         LCD_WR_CMD(XS,0x00);
         LCD_WR_CMD(YS,0x0000);
         LCD_WR_CMD(XE,MAX_X);
         LCD_WR_CMD(YE,MAX_Y);
-        
+
         LCD_WR_CMD(XP,0x0000);
         LCD_WR_CMD(YP,0x0000);
-        
+
         LCD_WR_REG(0x202);
         LCD_CS_CLR;
         LCD_RS_SET;
         offset=0;
-        
+
         for(i=0; i < ysize; i+=2){
             for(j=0; j < xsize; j+=2) {
                 offset =  (i * xsize+ j)*2;
@@ -899,53 +899,53 @@ void loadFrameBuffer()
                 r[0] = (p & RGB565_MASK_RED) >> 11;
                 g[0] = (p & RGB565_MASK_GREEN) >> 5;
                 b[0] = (p & RGB565_MASK_BLUE);
-                
+
                 r[0] <<= 3;
                 g[0] <<= 2;
                 b[0] <<= 3;
-                
+
                 offset = ( (i+1) * xsize +j )*2;
                 p=(buffer[offset+1] << 8) | buffer[offset];
                 r[1] = (p & RGB565_MASK_RED) >> 11;
                 g[1] = (p & RGB565_MASK_GREEN) >> 5;
                 b[1] = (p & RGB565_MASK_BLUE);
-                
+
                 r[1]<<= 3;
                 g[1]<<= 2;
                 b[1]<<= 3;
-                
+
                 offset = ( i*xsize + j+1)*2;
                 p=(buffer[offset+1] << 8) | buffer[offset];
                 r[2] = (p & RGB565_MASK_RED) >> 11;
                 g[2] = (p & RGB565_MASK_GREEN) >> 5;
                 b[2] = (p & RGB565_MASK_BLUE);
-                
+
                 r[2]<<= 3;
                 g[2]<<= 2;
                 b[2]<<= 3;
-                
+
                 offset=((i+1)*xsize + j+1)*2;
                 p=(buffer[offset+1] << 8) | buffer[offset];
                 r[3] = (p & RGB565_MASK_RED) >> 11;
                 g[3] = (p & RGB565_MASK_GREEN) >> 5;
                 b[3] = (p & RGB565_MASK_BLUE);
-                
+
                 r[3]<<= 3;
                 g[3]<<= 2;
                 b[3]<<= 3;
                 //p=RGB565(r>>2, g>>2, b>>2);
-                
+
                 if (i>0 && j >0) {
                     offset =  ((i-1) * xsize+ (j+1))*2;
                     p=(buffer[offset+1] << 8) | buffer[offset];
                     r[4] = (p & RGB565_MASK_RED) >> 11;
                     g[4] = (p & RGB565_MASK_GREEN) >> 5;
                     b[4] = (p & RGB565_MASK_BLUE);
-                    
+
                     r[4] <<= 3;
                     g[4] <<= 2;
                     b[4] <<= 3;
-                    
+
                     offset =  ((i-1) * xsize+ (j))*2;
                     p=(buffer[offset+1] << 8) | buffer[offset];
                     r[5] = (p & RGB565_MASK_RED) >> 11;
@@ -954,17 +954,17 @@ void loadFrameBuffer()
                     r[5]<<= 3;
                     g[5]<<= 2;
                     b[5]<<= 3;
-                    
+
                     offset =  ((i-1) * xsize+ (j-1))*2;
                     p=(buffer[offset+1] << 8) | buffer[offset];
                     r[6] = (p & RGB565_MASK_RED) >> 11;
                     g[6] = (p & RGB565_MASK_GREEN) >> 5;
                     b[6] = (p & RGB565_MASK_BLUE);
-                    
+
                     r[6]<<= 3;
                     g[6]<<= 2;
                     b[6]<<= 3;
-                    
+
                     offset =  ((i+1) * xsize+ (j-1))*2;
                     p=(buffer[offset+1] << 8) | buffer[offset];
                     r[7] = (p & RGB565_MASK_RED) >> 11;
@@ -973,7 +973,7 @@ void loadFrameBuffer()
                     r[7]<<= 3;
                     g[7]<<= 2;
                     b[7]<<= 3;
-                    
+
                     offset =  ((i) * xsize+ (j-1))*2;
                     p=(buffer[offset+1] << 8) | buffer[offset];
                     r[8] = (p & RGB565_MASK_RED) >> 11;
@@ -982,8 +982,8 @@ void loadFrameBuffer()
                     r[8]<<= 3;
                     g[8]<<= 2;
                     b[8]<<= 3;
-                    
-                    
+
+
                     minsum=nowsum=50000;
                     ra=(r[0]+r[1]*2+r[2]*2+r[3]+r[4]+r[5]*2+r[6]+r[7]+r[8]*2)/13.0;
                     ga=(g[0]+g[1]*2+g[2]*2+g[3]+g[4]+g[5]*2+g[6]+g[7]+g[8]*2)/13.0;
@@ -1011,11 +1011,11 @@ void loadFrameBuffer()
                                  (int)(ba*0.7+b[0]*0.3));
                     //p=RGB565((int) (((float) r2)*0.555+((float) r)*1.78),(int) (((float) g2)*0.555+((float) g)*1.78),(int) (((float) b2)*0.555+((float) b)*1.78));
                 }
-                
+
                 //valueRGB565(value[offset], value[offset+1], value[offset+2]);
                 //if (i < 320 && j < 240)
                 LCD_WR_Data(p);
-                
+
                 //offset+=4;
             }
             //offset = offset + xsize*2;
@@ -1029,7 +1029,7 @@ void LCD_Init()
 	delay (100);
 	LCD_RST_SET;
 	delay (100);
-    
+
 	LCD_WR_CMD( 0x000, 0x0001 ); /* oschilliation start */
 	delay ( 1 );
 	/* Power settings */
@@ -1041,11 +1041,11 @@ void LCD_Init()
 	LCD_WR_CMD( 0x111, 0x0022 );
 	LCD_WR_CMD( 0x100, 0x0120 );
 	delay ( 2 );
-    
+
 	LCD_WR_CMD( 0x100, 0x3120 );
 	delay ( 8 );
 	/* Display control */
-    
+
 	LCD_WR_CMD( 0x002, 0x0000 );
 #ifdef	ROTATE90
 	LCD_WR_CMD( 0x001, 0x0000 );
@@ -1066,10 +1066,10 @@ void LCD_Init()
 	LCD_WR_CMD( 0x013, 0x0000 );
 	LCD_WR_CMD( 0x018, 0x0000 );
 	LCD_WR_CMD( 0x019, 0x0000 );
-    
+
 	LCD_WR_CMD( 0x203, 0x0000 );
 	LCD_WR_CMD( 0x204, 0x0000 );
-    
+
 	LCD_WR_CMD( 0x210, 0x0000 );
 	LCD_WR_CMD( 0x211, 0x00ef );
 	LCD_WR_CMD( 0x212, 0x0000 );
@@ -1078,7 +1078,7 @@ void LCD_Init()
 	LCD_WR_CMD( 0x215, 0x0000 );
 	LCD_WR_CMD( 0x216, 0x0000 );
 	LCD_WR_CMD( 0x217, 0x0000 );
-    
+
 	// Gray scale settings
 	LCD_WR_CMD( 0x300, 0x5343);
 	LCD_WR_CMD( 0x301, 0x1021);
@@ -1090,17 +1090,17 @@ void LCD_Init()
 	LCD_WR_CMD( 0x307, 0x0003);
 	LCD_WR_CMD( 0x308, 0x1201);
 	LCD_WR_CMD( 0x309, 0x050a);
-    
+
 	/* RAM access settings */
 	LCD_WR_CMD( 0x400, 0x4027 );
 	LCD_WR_CMD( 0x401, 0x0000 );
 	LCD_WR_CMD( 0x402, 0x0000 );	/* First screen drive position (1) */
 	LCD_WR_CMD( 0x403, 0x013f );	/* First screen drive position (2) */
 	LCD_WR_CMD( 0x404, 0x0000 );
-    
+
 	LCD_WR_CMD( 0x200, 0x0000 );
 	LCD_WR_CMD( 0x201, 0x0000 );
-    
+
 	LCD_WR_CMD( 0x100, 0x7120 );
 	LCD_WR_CMD( 0x007, 0x0103 );
 	delay( 1 );
@@ -1112,15 +1112,15 @@ void LCD_Init()
 void LCD_clear(int p)
 {
 	int i,j;
-    
+
 	LCD_WR_CMD(XS,0x00);
 	LCD_WR_CMD(YS,0x0000);
 	LCD_WR_CMD(XE,MAX_X);
 	LCD_WR_CMD(YE,MAX_Y);
-    
+
 	LCD_WR_CMD(XP,0x0000);
 	LCD_WR_CMD(YP,0x0000);
-    
+
 	LCD_WR_REG(0x202);
 	LCD_CS_CLR;
 	LCD_RS_SET;
@@ -1143,10 +1143,10 @@ void LCD_showbuffer()
     LCD_WR_CMD(YS,0x0000);
     LCD_WR_CMD(XE,MAX_X);
     LCD_WR_CMD(YE,MAX_Y);
-    
+
     LCD_WR_CMD(XP,0x0000);
     LCD_WR_CMD(YP,0x0000);
-    
+
     LCD_WR_REG(0x202);
     LCD_CS_CLR;
     LCD_RS_SET;
@@ -1160,7 +1160,7 @@ void LCD_showbuffer()
         }
     }
     LCD_CS_SET;
-    
+
 }
 
 
@@ -1175,7 +1175,7 @@ void DisplayChar(char casc,char postion_x,int postion_y)
 	LCD_WR_CMD(YE,postion_y*16+15);	//y end point
 	LCD_WR_CMD(XP,postion_x*8);
 	LCD_WR_CMD(YP,postion_y*16);
-    
+
 	LCD_WR_REG(0x202);
 	LCD_CS_CLR;
 	LCD_RS_SET;
@@ -1188,7 +1188,7 @@ void DisplayChar(char casc,char postion_x,int postion_y)
 				LCD_WR_Data(0xffff);
 			else
 				LCD_WR_Data(0x0000);
-            
+
 			b=b<<1;
 		}
 	}
@@ -1199,7 +1199,7 @@ void DisplayString(char *s,char x,char y)
 {
 	while (*s)
 	{
-        
+
 		DisplayChar(*s,x,y);
 #ifdef ROTATE90
         if(++x>=MAX_X)
@@ -1229,14 +1229,14 @@ void DisplayGB2312(char gb,char postion_x,char postion_y)
 {
 	char i,j,b;
 	char *p;
-    
+
 	LCD_WR_CMD(XS,postion_x*16); 	//x start point
 	LCD_WR_CMD(YS,postion_y*16); 	//y start point
 	LCD_WR_CMD(XE,postion_x*16+15);	//x end point
 	LCD_WR_CMD(YE,postion_y*16+15);	//y end point
 	LCD_WR_CMD(XP,postion_x*16);
 	LCD_WR_CMD(YP,postion_y*16);
-    
+
 	LCD_WR_REG(0x202);
 	LCD_CS_CLR;
 	LCD_RS_SET;
@@ -1269,7 +1269,7 @@ void DispSmallPic(int x, int y, int w, int h, const char *str)
 	LCD_WR_CMD(YS,0x0000);
 	LCD_WR_CMD(XE,0xEF);
 	LCD_WR_CMD(YE,0x013F);
-    
+
     LCD_WR_CMD( 0x003, 0x1238 );
     for(j=0;j<h;j++)
     {
@@ -1293,19 +1293,19 @@ void draw_circle(int x, int y, int r,int color)
     int a,b,num;
     a=0;
     b=r;
-    
+
     while ( 2 * b*b >= r * r) {
-        
+
         write_dot(x+a, y-b,color);
         write_dot(x-a, y-b,color);
         write_dot(x-a, y+b,color);
         write_dot(x+a, y+b,color);
-        
+
         write_dot(x+b, y+a,color);
         write_dot(x+b, y-a,color);
         write_dot(x-b, y+a,color);
         write_dot(x-b, y-a,color);
-        
+
         a++;
         num= (a*a+b*b) - r*r;
         if (num >=0) {
@@ -1319,7 +1319,7 @@ void draw_circle(int x, int y, int r,int color)
 int main (void)
 {
     pthread_t thread_id;
-    
+
     printf("bcm2835 init now\n");
     if (!bcm2835_init())
     {
@@ -1329,13 +1329,13 @@ int main (void)
     bcm2835_gpio_fsel(SPICS, BCM2835_GPIO_FSEL_OUTP) ;
     bcm2835_gpio_fsel(SPIRS, BCM2835_GPIO_FSEL_OUTP) ;
     bcm2835_gpio_fsel(SPIRST, BCM2835_GPIO_FSEL_OUTP) ;
-    
+
 #ifdef BCM2708SPI
 	bcm2835_spi_begin();
 	bcm2835_spi_setBitOrder(BCM2835_SPI_BIT_ORDER_MSBFIRST);
 	bcm2835_spi_setDataMode(BCM2835_SPI_MODE3);
 	bcm2835_spi_setClockDivider(BCM2835_SPI_CLOCK_DIVIDER_2);
-    
+
     //bcm2835_spi_chipSelect(BCM2835_SPI_CS1);
     //bcm2835_spi_setChipSelectPolarity(BCM2835_SPI_CS1,LOW);
 #else
@@ -1344,7 +1344,7 @@ int main (void)
 #endif
     printf ("Raspberry Pi MZTX06A LCD Testing...\n") ;
     printf ("http://jwlcd-tp.taobao.com\n") ;
-    
+
     //  loadPGM("etao.pbm");
     //  for (;;)
     //{
@@ -1360,11 +1360,10 @@ int main (void)
 	//LCD_QQ();
     //draw_circle(100,100,50,RGB565(130,30,220));
 	//draw_circle(200,10, 20,RGB565(100,2,23));
-	//draw_circle(30,160, 80, RGB565(22,134,100)); 
+	//draw_circle(30,160, 80, RGB565(22,134,100));
     //DisplayString("Windows",1,0);
 	//write_dot(10,10,0xffff);
 	//delay(500);
     //y}
     return 0 ;
 }
-
