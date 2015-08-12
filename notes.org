@@ -452,3 +452,18 @@
            style="width: 100%; height: 500px">
    </iframe>
    #+END_HTML
+* Learned
+** Definitions
+   - SPI :: Serial Peripheral Interface
+   - MISO :: Master Input, Slave Output (output from slave)
+   - MOSI :: Master Output, Slave Input (output from master)
+   - CS / nCS :: Chip Select, where n denotes a different active value
+        of high / low (possibly wrong order)
+** Pin Descriptions
+
+   *Probably wrong. Really can't tell. Woo!*
+
+   - SPICS :: SPI Chip Select or Slave Select (nCS)
+   - SPIRS :: GND / Ground
+   - SPIRST :: SCLK / Serial Clock for synchronization
+   - SPISCL
