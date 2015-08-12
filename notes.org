@@ -26,217 +26,217 @@
     awk 'BEGIN {OFS="|"} { print "",$1,$2,""}' >> notes.org
   #+END_SRC
 
-  | Count | Word                        |
-  |-------+-----------------------------|
-  |    51 | define                      |
-  |    48 | i                           |
-  |    35 | 0x0000                      |
-  |    26 | int                         |
-  |    25 | j                           |
-  |    20 | if                          |
-  |    17 | else                        |
-  |    16 | for                         |
-  |    15 | n                           |
-  |    12 | numdiff                     |
-  |    12 | index                       |
-  |    10 | val                         |
-  |    10 | bcm2835_gpio_write          |
-  |     9 | xsize                       |
-  |     9 | flag                        |
-  |     8 | ysize                       |
-  |     8 | include                     |
-  |     8 | h                           |
-  |     8 | endif                       |
-  |     8 | drawmap                     |
-  |     8 | diffsy                      |
-  |     8 | diffsx                      |
-  |     8 | char                        |
-  |     8 | bcm2835_spi_transfer        |
-  |     7 | void                        |
-  |     7 | unsigned                    |
-  |     7 | quickdiffmap                |
-  |     7 | printf                      |
-  |     7 | num                         |
-  |     7 | ifdef                       |
-  |     7 | diffey                      |
-  |     7 | diffex                      |
-  |     6 | delay                       |
-  |     6 | buffer                      |
-  |     6 | bcm2835_gpio_set            |
-  |     6 | bcm2835_gpio_fsel           |
-  |     6 | bcm2835_gpio_clr            |
-  |     5 | temp                        |
-  |     5 | p                           |
-  |     5 | LCD_WR_Data                 |
-  |     5 | isleep                      |
-  |     5 | infile                      |
-  |     5 | color                       |
-  |     5 | 0x202                       |
-  |     4 | offset                      |
-  |     4 | long                        |
-  |     4 | dy                          |
-  |     4 | dx                          |
-  |     4 | diffmap                     |
-  |     4 | 0x8000                      |
-  |     4 | 0x100                       |
-  |     3 | vsize                       |
-  |     3 | r                           |
-  |     3 | hsize                       |
-  |     3 | g                           |
-  |     3 | bcm2835                     |
-  |     3 | b                           |
-  |     3 | 0x007                       |
-  |     3 | 0x00                        |
-  |     2 | write_dot                   |
-  |     2 | when                        |
-  |     2 | test                        |
-  |     2 | ss                          |
-  |     2 | sizeof                      |
-  |     2 | s                           |
-  |     2 | return                      |
-  |     2 | Read                        |
-  |     2 | loading                     |
-  |     2 | loadFrameBuffer_diff_320    |
-  |     2 | LCD_test                    |
-  |     2 | LCD_Init                    |
-  |     2 | init                        |
-  |     2 | fseek                       |
-  |     2 | fread                       |
-  |     2 | file                        |
-  |     2 | d                           |
-  |     2 | chars                       |
-  |     2 | argv                        |
-  |     2 | argc                        |
-  |     2 | abs                         |
-  |     2 | 0x213                       |
-  |     2 | 0x212                       |
-  |     2 | 0x211                       |
-  |     2 | 0x210                       |
-  |     2 | 0x201                       |
-  |     2 | 0x200                       |
-  |     2 | 0x050a                      |
-  |     2 | 0x0213                      |
-  |     2 | 0x0212                      |
-  |     2 | 0x0211                      |
-  |     2 | 0x0210                      |
-  |     2 | 0x0201                      |
-  |     2 | 0x0200                      |
-  |     2 | 0x013f                      |
-  |     2 | 0x003                       |
-  |     2 | 0x001                       |
-  |     2 | 0x0003                      |
-  |     1 | while                       |
-  |     1 | value                       |
-  |     1 | usleep                      |
-  |     1 | unistd                      |
-  |     1 | timeb                       |
-  |     1 | Testing                     |
-  |     1 | sys                         |
-  |     1 | string                      |
-  |     1 | strcmp                      |
-  |     1 | stdlib                      |
-  |     1 | stdio                       |
-  |     1 | short                       |
-  |     1 | rb                          |
-  |     1 | Raspberry                   |
-  |     1 | ra                          |
-  |     1 | r1                          |
-  |     1 | Pi                          |
-  |     1 | nowsum                      |
-  |     1 | now                         |
-  |     1 | minsum                      |
-  |     1 | malloc                      |
-  |     1 | main                        |
-  |     1 | k                           |
-  |     1 | inline                      |
-  |     1 | http                        |
-  |     1 | hex                         |
-  |     1 | ga                          |
-  |     1 | g1                          |
-  |     1 | fp                          |
-  |     1 | fopen                       |
-  |     1 | fb0                         |
-  |     1 | error                       |
-  |     1 | dev                         |
-  |     1 | bcm2835_spi_setDataMode     |
-  |     1 | bcm2835_spi_setClockDivider |
-  |     1 | bcm2835_spi_setBitOrder     |
-  |     1 | bcm2835_spi_begin           |
-  |     1 | bcm2835_init                |
-  |     1 | ba                          |
-  |     1 | b1                          |
-  |     1 | ascii                       |
-  |     1 | area                        |
-  |     1 | 8x16                        |
-  |     1 | 0xffff                      |
-  |     1 | 0xffe0                      |
-  |     1 | 0xf81f                      |
-  |     1 | 0xF800                      |
-  |     1 | 0xf800                      |
-  |     1 | 0xe200                      |
-  |     1 | 0x7120                      |
-  |     1 | 0x5343                      |
-  |     1 | 0x4342                      |
-  |     1 | 0x404                       |
-  |     1 | 0x403                       |
-  |     1 | 0x4027                      |
-  |     1 | 0x402                       |
-  |     1 | 0x401                       |
-  |     1 | 0x400                       |
-  |     1 | 0x3120                      |
-  |     1 | 0x3110                      |
-  |     1 | 0x309                       |
-  |     1 | 0x308                       |
-  |     1 | 0x307                       |
-  |     1 | 0x306                       |
-  |     1 | 0x305                       |
-  |     1 | 0x304                       |
-  |     1 | 0x303                       |
-  |     1 | 0x302                       |
-  |     1 | 0x301                       |
-  |     1 | 0x300                       |
-  |     1 | 0x217                       |
-  |     1 | 0x216                       |
-  |     1 | 0x215                       |
-  |     1 | 0x214                       |
-  |     1 | 0x204                       |
-  |     1 | 0x203                       |
-  |     1 | 0x12B8                      |
-  |     1 | 0x1230                      |
-  |     1 | 0x1201                      |
-  |     1 | 0x111                       |
-  |     1 | 0x1100                      |
-  |     1 | 0x110                       |
-  |     1 | 0x103                       |
-  |     1 | 0x1021                      |
-  |     1 | 0x102                       |
-  |     1 | 0x101                       |
-  |     1 | 0x0808                      |
-  |     1 | 0x07ff                      |
-  |     1 | 0x07E0                      |
-  |     1 | 0x07e0                      |
-  |     1 | 0x019                       |
-  |     1 | 0x018                       |
-  |     1 | 0x013                       |
-  |     1 | 0x0120                      |
-  |     1 | 0x012                       |
-  |     1 | 0x0113                      |
-  |     1 | 0x0103                      |
-  |     1 | 0x0101                      |
-  |     1 | 0x0100                      |
-  |     1 | 0x00ef                      |
-  |     1 | 0x00d                       |
-  |     1 | 0x00c                       |
-  |     1 | 0x00b                       |
-  |     1 | 0x009d                      |
-  |     1 | 0x009                       |
-  |     1 | 0x008                       |
-  |     1 | 0x006                       |
-  |     1 | 0x0022                      |
-  |     1 | 0x002                       |
-  |     1 | 0x001F                      |
-  |     1 | 0x001f                      |
-  |     1 | 0x0011                      |
-  |     1 | 0x0008                      |
-  |     1 | 0x0001                      |
-  |     1 | 0x000                       |
+  | Important | Count | Word                        |
+  |-----------+-------+-----------------------------|
+  |           |    51 | define                      |
+  |           |    48 | i                           |
+  | Yes       |    35 | 0x0000                      |
+  |           |    26 | int                         |
+  |           |    25 | j                           |
+  |           |    20 | if                          |
+  |           |    17 | else                        |
+  |           |    16 | for                         |
+  |           |    15 | n                           |
+  | Yes       |    12 | numdiff                     |
+  |           |    12 | index                       |
+  |           |    10 | val                         |
+  |           |    10 | bcm2835_gpio_write          |
+  | Yes       |     9 | xsize                       |
+  | Yes       |     9 | flag                        |
+  | Yes       |     8 | ysize                       |
+  |           |     8 | include                     |
+  |           |     8 | h                           |
+  |           |     8 | endif                       |
+  | Yes       |     8 | drawmap                     |
+  | Yes       |     8 | diffsy                      |
+  | Yes       |     8 | diffsx                      |
+  |           |     8 | char                        |
+  |           |     8 | bcm2835_spi_transfer        |
+  |           |     7 | void                        |
+  |           |     7 | unsigned                    |
+  | Yes       |     7 | quickdiffmap                |
+  |           |     7 | printf                      |
+  |           |     7 | num                         |
+  |           |     7 | ifdef                       |
+  | Yes       |     7 | diffey                      |
+  | Yes       |     7 | diffex                      |
+  |           |     6 | delay                       |
+  | Yes       |     6 | buffer                      |
+  |           |     6 | bcm2835_gpio_set            |
+  |           |     6 | bcm2835_gpio_fsel           |
+  |           |     6 | bcm2835_gpio_clr            |
+  |           |     5 | temp                        |
+  |           |     5 | p                           |
+  |           |     5 | LCD_WR_Data                 |
+  |           |     5 | isleep                      |
+  |           |     5 | infile                      |
+  |           |     5 | color                       |
+  | Yes       |     5 | 0x202                       |
+  |           |     4 | offset                      |
+  |           |     4 | long                        |
+  |           |     4 | dy                          |
+  |           |     4 | dx                          |
+  | Yes       |     4 | diffmap                     |
+  | Yes       |     4 | 0x8000                      |
+  | Yes       |     4 | 0x100                       |
+  | No        |     3 | vsize                       |
+  |           |     3 | r                           |
+  | No        |     3 | hsize                       |
+  |           |     3 | g                           |
+  |           |     3 | bcm2835                     |
+  |           |     3 | b                           |
+  | Yes       |     3 | 0x007                       |
+  | Yes       |     3 | 0x00                        |
+  |           |     2 | write_dot                   |
+  |           |     2 | when                        |
+  |           |     2 | test                        |
+  |           |     2 | ss                          |
+  |           |     2 | sizeof                      |
+  |           |     2 | s                           |
+  |           |     2 | return                      |
+  |           |     2 | Read                        |
+  |           |     2 | loading                     |
+  |           |     2 | loadFrameBuffer_diff_320    |
+  |           |     2 | LCD_test                    |
+  |           |     2 | LCD_Init                    |
+  |           |     2 | init                        |
+  |           |     2 | fseek                       |
+  |           |     2 | fread                       |
+  |           |     2 | file                        |
+  |           |     2 | d                           |
+  |           |     2 | chars                       |
+  |           |     2 | argv                        |
+  |           |     2 | argc                        |
+  |           |     2 | abs                         |
+  | Yes       |     2 | 0x213                       |
+  | Yes       |     2 | 0x212                       |
+  | Yes       |     2 | 0x211                       |
+  | Yes       |     2 | 0x210                       |
+  | Yes       |     2 | 0x201                       |
+  | Yes       |     2 | 0x200                       |
+  | Yes       |     2 | 0x050a                      |
+  | Yes       |     2 | 0x0213                      |
+  | Yes       |     2 | 0x0212                      |
+  | Yes       |     2 | 0x0211                      |
+  | Yes       |     2 | 0x0210                      |
+  | Yes       |     2 | 0x0201                      |
+  | Yes       |     2 | 0x0200                      |
+  | Yes       |     2 | 0x013f                      |
+  | Yes       |     2 | 0x003                       |
+  | Yes       |     2 | 0x001                       |
+  | Yes       |     2 | 0x0003                      |
+  |           |     1 | while                       |
+  |           |     1 | value                       |
+  |           |     1 | usleep                      |
+  |           |     1 | unistd                      |
+  |           |     1 | timeb                       |
+  |           |     1 | Testing                     |
+  |           |     1 | sys                         |
+  |           |     1 | string                      |
+  |           |     1 | strcmp                      |
+  |           |     1 | stdlib                      |
+  |           |     1 | stdio                       |
+  |           |     1 | short                       |
+  |           |     1 | rb                          |
+  |           |     1 | Raspberry                   |
+  |           |     1 | ra                          |
+  |           |     1 | r1                          |
+  |           |     1 | Pi                          |
+  | Yes       |     1 | nowsum                      |
+  |           |     1 | now                         |
+  | Yes       |     1 | minsum                      |
+  |           |     1 | malloc                      |
+  |           |     1 | main                        |
+  |           |     1 | k                           |
+  |           |     1 | inline                      |
+  |           |     1 | http                        |
+  |           |     1 | hex                         |
+  |           |     1 | ga                          |
+  |           |     1 | g1                          |
+  |           |     1 | fp                          |
+  |           |     1 | fopen                       |
+  |           |     1 | fb0                         |
+  |           |     1 | error                       |
+  |           |     1 | dev                         |
+  |           |     1 | bcm2835_spi_setDataMode     |
+  |           |     1 | bcm2835_spi_setClockDivider |
+  |           |     1 | bcm2835_spi_setBitOrder     |
+  |           |     1 | bcm2835_spi_begin           |
+  |           |     1 | bcm2835_init                |
+  |           |     1 | ba                          |
+  |           |     1 | b1                          |
+  |           |     1 | ascii                       |
+  |           |     1 | area                        |
+  |           |     1 | 8x16                        |
+  | Yes       |     1 | 0xffff                      |
+  | Yes       |     1 | 0xffe0                      |
+  | Yes       |     1 | 0xf81f                      |
+  | Yes       |     1 | 0xF800                      |
+  | Yes       |     1 | 0xf800                      |
+  | Yes       |     1 | 0xe200                      |
+  | Yes       |     1 | 0x7120                      |
+  | Yes       |     1 | 0x5343                      |
+  | Yes       |     1 | 0x4342                      |
+  | Yes       |     1 | 0x404                       |
+  | Yes       |     1 | 0x403                       |
+  | Yes       |     1 | 0x4027                      |
+  | Yes       |     1 | 0x402                       |
+  | Yes       |     1 | 0x401                       |
+  | Yes       |     1 | 0x400                       |
+  | Yes       |     1 | 0x3120                      |
+  | Yes       |     1 | 0x3110                      |
+  | Yes       |     1 | 0x309                       |
+  | Yes       |     1 | 0x308                       |
+  | Yes       |     1 | 0x307                       |
+  | Yes       |     1 | 0x306                       |
+  | Yes       |     1 | 0x305                       |
+  | Yes       |     1 | 0x304                       |
+  | Yes       |     1 | 0x303                       |
+  | Yes       |     1 | 0x302                       |
+  | Yes       |     1 | 0x301                       |
+  | Yes       |     1 | 0x300                       |
+  | Yes       |     1 | 0x217                       |
+  | Yes       |     1 | 0x216                       |
+  | Yes       |     1 | 0x215                       |
+  | Yes       |     1 | 0x214                       |
+  | Yes       |     1 | 0x204                       |
+  | Yes       |     1 | 0x203                       |
+  | Yes       |     1 | 0x12B8                      |
+  | Yes       |     1 | 0x1230                      |
+  | Yes       |     1 | 0x1201                      |
+  | Yes       |     1 | 0x111                       |
+  | Yes       |     1 | 0x1100                      |
+  | Yes       |     1 | 0x110                       |
+  | Yes       |     1 | 0x103                       |
+  | Yes       |     1 | 0x1021                      |
+  | Yes       |     1 | 0x102                       |
+  | Yes       |     1 | 0x101                       |
+  | Yes       |     1 | 0x0808                      |
+  | Yes       |     1 | 0x07ff                      |
+  | Yes       |     1 | 0x07E0                      |
+  | Yes       |     1 | 0x07e0                      |
+  | Yes       |     1 | 0x019                       |
+  | Yes       |     1 | 0x018                       |
+  | Yes       |     1 | 0x013                       |
+  | Yes       |     1 | 0x0120                      |
+  | Yes       |     1 | 0x012                       |
+  | Yes       |     1 | 0x0113                      |
+  | Yes       |     1 | 0x0103                      |
+  | Yes       |     1 | 0x0101                      |
+  | Yes       |     1 | 0x0100                      |
+  | Yes       |     1 | 0x00ef                      |
+  | Yes       |     1 | 0x00d                       |
+  | Yes       |     1 | 0x00c                       |
+  | Yes       |     1 | 0x00b                       |
+  | Yes       |     1 | 0x009d                      |
+  | Yes       |     1 | 0x009                       |
+  | Yes       |     1 | 0x008                       |
+  | Yes       |     1 | 0x006                       |
+  | Yes       |     1 | 0x0022                      |
+  | Yes       |     1 | 0x002                       |
+  | Yes       |     1 | 0x001F                      |
+  | Yes       |     1 | 0x001f                      |
+  | Yes       |     1 | 0x0011                      |
+  | Yes       |     1 | 0x0008                      |
+  | Yes       |     1 | 0x0001                      |
+  | Yes       |     1 | 0x000                       |
