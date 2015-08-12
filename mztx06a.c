@@ -45,6 +45,7 @@
 #define SPISCL RPI_GPIO_P1_23  //GPIO11
 #define SPISCI RPI_GPIO_P1_19  //GPIO10
 #define LCDPWM RPI_GPIO_P1_12  //GPIO18
+
 #if 0
 #define LCD_CS_CLR  bcm2835_gpio_write(SPICS,0)
 #define LCD_RS_CLR  bcm2835_gpio_write(SPIRS,0)
@@ -58,6 +59,7 @@
 #define LCD_SCL_SET bcm2835_gpio_write(SPISCL,1)
 #define LCD_SCI_SET bcm2835_gpio_write(SPISCI,1)
 #else
+
 #define LCD_CS_CLR  bcm2835_gpio_clr(SPICS)
 #define LCD_RS_CLR  bcm2835_gpio_clr(SPIRS)
 #define LCD_RST_CLR bcm2835_gpio_clr(SPIRST)
@@ -81,27 +83,24 @@ unsigned short color[] = {
 char *value=NULL;
 int hsize=0, vsize=0;
 
-void LCD_WR_REG(int index)
-{
-	char i;
+void LCD_WR_REG(int index) {
 	LCD_CS_CLR;
 	LCD_RS_CLR;
+
 #ifdef BCM2708SPI
 	bcm2835_spi_transfer(index>>8);
 	bcm2835_spi_transfer(index);
 #else
 
-	for(i=0;i<16;i++)
-	{
+	for (int i=0; i<16; i++) {
 		LCD_SCL_CLR;
-		if(index&0x8000)
-		{
+
+		if (index & 0x8000) {
 			LCD_SCI_SET;
-		}
-		else
-		{
+		} else {
 			LCD_SCI_CLR;
 		}
+
 		index=index<<1;
 		LCD_SCL_SET;
 	}
@@ -110,88 +109,87 @@ void LCD_WR_REG(int index)
 	LCD_CS_SET;
 }
 
-void LCD_WR_CMD(int index,int val)
-{
-	char i;
+void LCD_WR_CMD(int index, int val) {
 	LCD_CS_CLR;
 	LCD_RS_CLR;
+
 #ifdef BCM2708SPI
 	bcm2835_spi_transfer(index>>8);
 	bcm2835_spi_transfer(index);
 #else
-	for(i=0;i<16;i++)
-	{
+
+	for(int i=0; i<16; i++) {
 		LCD_SCL_CLR;
-		if(index&0x8000)
-		{
+
+		if(index & 0x8000) {
 			LCD_SCI_SET;
-		}
-		else
-		{
+		} else {
 			LCD_SCI_CLR;
 		}
+
 		index=index<<1;
 		LCD_SCL_SET;
 	}
 #endif
+
 	LCD_RS_SET;
+
 #ifdef BCM2708SPI
 	bcm2835_spi_transfer(val>>8);
 	bcm2835_spi_transfer(val);
 #else
-	for(i=0;i<16;i++)
-	{
+
+	for(int i=0; i<16; i++) {
 		LCD_SCL_CLR;
-		if(val&0x8000)
-		{
+
+		if(val & 0x8000) {
 			LCD_SCI_SET;
-		}
-		else
-		{
+		} else {
 			LCD_SCI_CLR;
 		}
-		val=val<<1;
+
+		val <<= 1;
 		LCD_SCL_SET;
 	}
 #endif
+
 	LCD_CS_SET;
 }
 
 void inline LCD_WR_Data(int val)
 {
-	char i;
+
 #ifdef BCM2708SPI
 	bcm2835_spi_transfer(val>>8);
 	bcm2835_spi_transfer(val);
 #else
-	for(i=0;i<16;i++)
-	{
+
+	for(i=0; i<16; i++) {
 		LCD_SCL_CLR;
-		if(val&0x8000)
-		{
+
+		if(val & 0x8000) {
 			LCD_SCI_SET;
-		}
-		else
-		{
+		} else {
 			LCD_SCI_CLR;
 		}
-		val=val<<1;
+
+		val <<= 1;
 		LCD_SCL_SET;
 	}
 #endif
+
 }
 
 
-void write_dot(char dx,int dy,int color)
-{
-	LCD_WR_CMD(0x210,dx);
-	LCD_WR_CMD(0x212,dy);
-	LCD_WR_CMD(0x211,dx);
-	LCD_WR_CMD(0x213,dy);
+void write_dot(char dx, int dy, int color) {
+	LCD_WR_CMD(0x210, dx);
+	LCD_WR_CMD(0x212, dy);
+	LCD_WR_CMD(0x211, dx);
+	LCD_WR_CMD(0x213, dy);
 
-	LCD_WR_CMD(0x200,dx);
-	LCD_WR_CMD(0x201,dy);
-	LCD_WR_CMD(0x202,color);
+	LCD_WR_CMD(0x200, dx);
+	LCD_WR_CMD(0x201, dy);
+	LCD_WR_CMD(0x202, color);
 }
 
 void loadFrameBuffer_diff_320()
