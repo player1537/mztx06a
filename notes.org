@@ -1,3 +1,17 @@
+#+TITLE: mztx06a notes
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../org-html-themes/styles/bigblow/css/htmlize.css"/>
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../org-html-themes/styles/bigblow/css/bigblow.css"/>
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../org-html-themes/styles/bigblow/css/hideshow.css"/>
+
+#+HTML_HEAD: <script type="text/javascript" src="../org-html-themes/styles/bigblow/js/jquery-1.11.0.min.js"></script>
+#+HTML_HEAD: <script type="text/javascript" src="../org-html-themes/styles/bigblow/js/jquery-ui-1.10.2.min.js"></script>
+
+#+HTML_HEAD: <script type="text/javascript" src="../org-html-themes/styles/bigblow/js/jquery.localscroll-min.js"></script>
+#+HTML_HEAD: <script type="text/javascript" src="../org-html-themes/styles/bigblow/js/jquery.scrollTo-1.4.3.1-min.js"></script>
+#+HTML_HEAD: <script type="text/javascript" src="../org-html-themes/styles/bigblow/js/jquery.zclip.min.js"></script>
+#+HTML_HEAD: <script type="text/javascript" src="../org-html-themes/styles/bigblow/js/bigblow.js"></script>
+#+HTML_HEAD: <script type="text/javascript" src="../org-html-themes/styles/bigblow/js/hideshow.js"></script>
+#+HTML_HEAD: <script type="text/javascript" src="../org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
 * Used Functions
   - [X] void LCD_WR_REG(int index)
   - [X] void LCD_WR_CMD(int index,int val)
@@ -140,41 +154,301 @@
   | Yes       |     9 |        xsize |             |
   | Yes       |     8 |        ysize |             |
 * Resources
-  - http://solarpower3190.blogspot.com/2014/11/interfacing-mztx06a-22-tft-screen-on.html
+** http://solarpower3190.blogspot.com/2014/11/interfacing-mztx06a-22-tft-screen-on.html
 
-    #+BEGIN_QUOTE
-    Interfacing MZTX06A 2.2" TFT Screen on Raspberry Pi
+   Interfacing MZTX06A 2.2" TFT Screen on Raspberry Pi
 
-    I recently bought a 2.2" TFT screen with SPI interface and 320x240
-    pixel resolution on Deal Extreme.  According to the very
-    rudimentary documentation it needs to be connected like this :
+   I recently bought a 2.2" TFT screen with SPI interface and 320x240
+   pixel resolution on Deal Extreme.  According to the very
+   rudimentary documentation it needs to be connected like this :
 
-    | lcd pin | lcd names | Rpi pin | Rpi name |
-    |---------+-----------+---------+----------|
-    |       1 | LED+      |       1 | 3.3V     |
-    |       2 | VDD-      |      17 | 3.3V     |
-    |       3 | /RST-     |      22 | GPIO25   |
-    |       4 | RS-       |      21 | MISO     |
-    |       5 | /CS-      |      26 |          |
-    |       6 | SCI-      |      19 | MOSI     |
-    |       7 | SCL-      |      23 | SCLK     |
-    |       8 | GND       |      25 | GND      |
+   | lcd pin | lcd names | Rpi pin | Rpi name |
+   |---------+-----------+---------+----------|
+   |       1 | LED+      |       1 | 3.3V     |
+   |       2 | VDD-      |      17 | 3.3V     |
+   |       3 | /RST-     |      22 | GPIO25   |
+   |       4 | RS-       |      21 | MISO     |
+   |       5 | /CS-      |      26 |          |
+   |       6 | SCI-      |      19 | MOSI     |
+   |       7 | SCL-      |      23 | SCLK     |
+   |       8 | GND       |      25 | GND      |
 
-    After getting the MZTX06A software from github :
+   After getting the MZTX06A software from github :
 
-    https://github.com/yaolet/mztx06a.git
+   https://github.com/yaolet/mztx06a.git
 
-    and launching the makefile, the resulting MZTX06A executable
-    copies the /dev/fb content to the screen. Here below the result
-    when launched directly from rc.local ...
+   and launching the makefile, the resulting MZTX06A executable
+   copies the /dev/fb content to the screen. Here below the result
+   when launched directly from rc.local ...
 
-    In order to match framebuffer and screen resolution, one has to
-    modify /boot/config.txt and uncomment the lines with Horizontal
-    and vertical screen resolution. Please use 320 and 240 in order to
-    avoid blurred screens.
+   In order to match framebuffer and screen resolution, one has to
+   modify /boot/config.txt and uncomment the lines with Horizontal
+   and vertical screen resolution. Please use 320 and 240 in order to
+   avoid blurred screens.
 
-    This method works flawlessly with X. Just startx and
-    watch. Unfortunately 320x240 pixels doesn't leave much space for
-    actual work. Most user interfaces are not suited for low-res.
+   This method works flawlessly with X. Just startx and
+   watch. Unfortunately 320x240 pixels doesn't leave much space for
+   actual work. Most user interfaces are not suited for low-res.
 
-    #+END_QUOTE
+** http://pan.baidu.com/s/1jGp5mrs
+
+   Not in English, so I probably won't be able to make much use of any
+   of their resources.
+
+** http://www.banggood.com/MZTX06A-2_2-Inch-IPS-TFT-LCD-Display-Module-For-Raspberry-Pi-p-977388.html
+
+   MZTX06A 2.2 Inch IPS TFT LCD Display Module For Raspberry Pi
+
+   Description:
+
+   Compatible with Raspberry Pi, offering wide viewing angle, high
+   brightness, high contrast; Allows you view from any angles, which
+   is close to 180 degrees; *The SPI core dedicated adapter is
+   self-designed timing chip SPI clock generation products available*
+   *to 33MHz* , much faster than the other driver chip screen.
+
+   Connection:
+
+   - 8 LED + (common anode LED backlight);
+   - 7 VDD (+3.3 V Supply);
+   - 6 / RST (reset pin can be directly connected to +3.3 V provincial IO)S;
+   - 5 RS (command / data indication feet);
+   - 4 / CS (chip select pin can be directly connected to GND province IO);
+   - 3 SCI (serial data pin, which is the SPI MOSI);
+   - 2 SCL (serial clock pin, which is SCK);
+   - 1 GND (ground)
+
+   Feature:
+
+   - Size: 2.2 inches (5.6cm diagonal);
+   - Color: 65K colors;
+   - Resolution: QVGA 320 x 240;
+   - Interface: SIP, 8-pin 2.54mm single row
+
+   *Note: Probably not an SIP interface, but instead SPI*
+
+** http://www.panelook.com/MZTX06A_KOE_2.2_LCM_parameter_18856.html
+
+   *Note: Disable JavaScript to copy from this domain*
+
+   *Note: This is a 2.2 inch display. I have no idea which screen I have.*
+
+   Mechanical Features
+
+   | Panel Size :            | 2.2 inch               |
+   | Dot Resolution :        | 240(RGB)x320 (QVGA)    |
+   | Pixel Configuration :   | RGB Vertical Stripe    |
+   | Pixel Density :         | 180 PPI                |
+   | Aspect Ratio :          | 3:4 (H:V)              |
+   | Form Factor :           | Flat Rectangle Display |
+   | Dot Pitch :             | 0.047x0.141 mm (HxV)   |
+   | Pixel Pitch :           | 0.141x0.141 mm (HxV)   |
+   | Weight :                | TBD                    |
+   | Active Area :           | 33.84x45.12 mm (HxV)   |
+   | Bezel Area :            | 35.04x46.32 mm (HxV)   |
+   | Outline Dimension :     | 40.1x56.8 mm (HxV)     |
+   | Outline Depth :         | 2.55 mm                |
+   | Landscape or Portrait : | Portrait type          |
+   | Touch Panel :           | Without                |
+
+   Optical Features
+
+   | Display Mode :             | IPS, Normally Black, Transmissive                                       |
+   | IPS Family:                | AAS, ADS, AHVA, FFS, IPS, New Mode2, PLS, SFT, Vistarich                |
+   | VA Family:                 | ASV, HVA, MVA, PVA, SVA, UV^2 A, VA                                     |
+   | Brightness :               | 250 cd/m^2 (Typ.)                                                       |
+   | Contrast Ratio :           | 300 : 1 (Typ.) (Transmissive)                                           |
+   | Display Color :            | 65K ()                                                                  |
+   | Response Time :            | 35 (Typ.)(Tr+Td)                                                        |
+   | Viewing Angle :            | 85/85/85/85 (Typ.)(CR >= 10) (L/R/U/D)                                  |
+   | Viewing Direction :        | Symmetry                                                                |
+   | White color Chromaticity : | Wx:0.320; Wy:0.350                                                      |
+   | White Variation :          | 1.25/1.43 (Typ./Max.)(9 points) Luminance Variation = Maximum / Minimum |
+
+   Electronics Feature
+
+   | Vertical Frequency : | 85Hz                        |
+   | 120Hz (60HZ Input) : | Embedded MEMC Circuit       |
+   | 120Hz+120Hz :        | 120Hz Panel+120Hz Backlight |
+   | 240Hz (60HZ Input) : | Embedded MEMC Circuit       |
+   | Reverse Scan :       | No                          |
+   | Driver IC :          | Built-in BD663474           |
+
+   Backlight System
+
+   | Lamp Position :     | Edge light type Front view positon |
+   | Lamp Type :         | WLED                               |
+   | Lamp Amount :       | 1S3P   8S6P: 8 Serial, 6 Parallel  |
+   | Lamp Shape :        | 3 strings                          |
+   | Lamp Voltage :      | 3.2/3.5V (Typ./Max.)               |
+   | Lamp Current :      | 18mA (Typ.)                        |
+   | Interface Type :    | Included in panel signal interface |
+   | Lamp Driver Board : | No                                 |
+
+   Signal Interface
+
+   | Signal Category :         | CPU                        |
+   | Signal Class :            | CPU                        |
+   | Input Voltage for Panel : | 2.8/3.3V (Typ.)(IOVCC/VCI) |
+   | Input Current for Panel : | TBD                        |
+   | Interface Type :          | FPC                        |
+
+   Signal Interface
+
+   | Brand | Model | Pin Pitch | Pins    | Amount | Configuration |
+   |-------+-------+-----------+---------+--------+---------------|
+   | /     | <     | <         | <       | <      | <             |
+   |       |       | 0.3mm     | 41 pins | 1 pcs  |               |
+
+** pi-mztx-ext-v10-sch.pdf
+
+   #+BEGIN_HTML
+   <iframe src="resources/pi-mztx-ext-v10-sch.pdf"
+           style="width: 100%; height: 500px">
+   </iframe>
+   #+END_HTML
+
+** http://helloraspberrypi.blogspot.com/2013/12/tontec-24-inch-tft-lcd-240x320-rgb.html
+
+   Tontec 2.4-inch TFT LCD 240x320 RGB Pixels Touch Screen Display
+   Monitor For Raspberry Pi
+
+   This Raspberry Pi Screen is designed for raspberry pi tailored a
+   expansion board, set LCD, touch, IO expansion, RTC functions in
+   one, greatly enriched the raspberry pie can learn playability.
+
+   "Display Part" use *Hitachi's IPS technology company of the LCD*,
+   the screen viewing angle is large, close to 180 degrees; very high
+   brightness and contrast, color of the screen is 8,16 I80 parallel,
+   in order to save resources and high-speed IO the transmission of
+   data, *the owner after two months of struggle with CPLD design a
+   SPI-I80 parallel converter*, the measured SPI clock can reach 120M.
+
+   "Touch Part" adopts TI (Texas Instruments) company TSC2003 chip,
+   the chip I2C Interface 4-wire resistive controller, also with a
+   2-way BAT and AIN, can monitor 2-way 2-way voltage and other
+   signals.
+
+   "IO extension Part" using *NS (National Semiconductor)'s LP3943
+   the I2C interface chip 16 IO expansion*, which with the PWM circuit
+   can drive the LED.
+
+   "RTC real time clock" using NXP's PCF8563, the chip I2C interface,
+   with a calendar. (This section is optional, standard shipping is
+   blank, the customer can DIY)
+
+   - Size: 2.4 inches
+   - Color: 65K colors
+   - Resolution: QVGA 240X320
+   - Back light: 3 LED Parallel
+   - Interface: SIP16, 8-pin 2.54mm single row
+
+** http://www.circuitbasics.com/setup-lcd-touchscreen-raspberry-pi/
+
+   In this tutorial, I will walk you through the process of installing
+   an LCD touchscreen on the Raspberry Pi, step by step. Many LCD
+   touchscreens for the Raspberry Pi include an image file that you
+   can write to your SD card and get up and running pretty
+   quickly. But what if you want to run a clean version of Raspbian,
+   without all the bloatware included on the manufacturer's image?
+   Also, what if you want to install a different OS such as Rasbmc or
+   XBMC? In these cases, you should follow this tutorial and go
+   through the steps to configure it on your own. This works on the
+   Raspberry Pi 2 Model B as well as older versions of the Raspberry
+   Pi. Don't worry, it's not that hard!
+
+   I am using the Waveshare 3.2" TFT (thin-film transistor) LCD. Many
+   other LCD screens are supported by this process, but check here to
+   see if your screen is supported by the FBTFT driver to make
+   sure. Scroll down the file and look for an abbreviated name of the
+   screen you are using:
+
+   *lots more omitted*
+
+** LP3943.pdf
+
+   *This device manages the backlight.*
+
+   #+BEGIN_HTML
+   <iframe src="resources/LP3943.pdf"
+           style="width: 100%; height: 500px">
+   </iframe>
+   #+END_HTML
+
+** http://electronics.stackexchange.com/questions/123038/what-is-the-difference-between-tft-lcd-interfaces
+
+   I am looking at driving a small TFT and have found that the driver
+   chip supports various interface methods, however I can't see why I
+   would choose one over another.
+
+   The options are:
+
+   - i80
+   - SPI
+   - VSYNC
+   - RGB
+
+   Can anyone describe the pros and cons of the different interfaces?
+
+   In my specific case I want to drive an ILI9320 with a PIC32 via the
+   Parallel Master Port.
+
+   ----
+
+   The "i80" parallel interface is simple and fast, and can be driven
+   by external memory interfaces on some microcontrollers. However,
+   it's a wide parallel bus, and requires a lot of pins to drive.
+
+   SPI requires very few pins to drive, and is available as a hardware
+   peripheral on many microcontrollers. It's slower than the parallel
+   interface, though.
+
+   The VSYNC and RGB interfaces are mainly useful for displaying
+   streaming video from live sources (e.g, in a camera). They aren't
+   useful outside special situations.
+
+   Given that you're using a PIC32 with what sounds like a big
+   parallel port, the i80 interface is probably ideal.
+
+** http://www.dx.com/p/mztx-pi-ext2-2-2-3-ips-full-angle-lcd-display-extension-board-module-for-raspberry-pi-green-282645?utm_source=dx&utm_medium=albums&utm_campaign=en20140603raspberrypiaccessories#.VcrDO-KUzGc
+
+   With LCD display, touch, IO extension, RTC in one; uses IPS LCD
+   180' screen; hight brightness, contrast, bright color; 8, 16 digit
+   I80 parallel port; the SPI-I80 parallel port adapter can reach 120m
+   max.; the touch part uses TI TSC2003 chip which is I2C 4-cord
+   resistance controller and is with 2-CH BAT, AIN to monitor 2-CH
+   voltage and 2-CH signals; the IO uses NS LP3943 which is I2C 16-CH
+   IO extension and with PWM to drive LED User Manual:
+
+   #+INCLUDE: "resources/sku.282645.txt" example
+
+   General
+
+   | Brand    | N/A            |
+   | Model    | MZTX-PI-EXT2.2 |
+   | Quantity | 1 Piece        |
+   | Color    | Green          |
+   | Material | FR4            |
+
+   Specification
+
+   | English Manual / Spec | No |
+
+   Dimensions & Weight
+
+   | Dimensions | 3.58 in x 2.2 in x 0.59 in (9.1 cm x 5.6 cm x 1.5 cm) |
+   | Weight     | 1.34 oz (38 g)                                        |
+
+   *Dimensions: 3.58 in x 2.2 in = 4.2 inch diagonal*
+
+** ILI9325.pdf
+
+   *Describes a screen that's very similar to this one*
+
+   *Adafruit URL: https://www.adafruit.com/products/335*
+
+   #+BEGIN_HTML
+   <iframe src="resources/ILI9325.pdf"
+           style="width: 100%; height: 500px">
+   </iframe>
+   #+END_HTML

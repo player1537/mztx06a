@@ -1,0 +1,57 @@
+2.4 inch expansion board using the steps:
+
+1 To copy mztx-ext-2.4.rar to Raspberry Perry and decompression it£¬after decompression the directory is mztx-ext-2.4
+
+2 Enter the directory mztx-ext-2.4/src
+
+3 make
+
+4 Revise the file config.txt¡£
+just type 
+
+sudo pico /boot/config.txt
+
+try fix your eyeballs on something look like:
+
+# uncomment to force a console size. By default it will be display's size minus
+
+# overscan.
+
+# framebuffer_width=xxxx
+
+# framebuffer_height=xxx
+
+now uncomment the last 2 lines and change it to either
+
+framebuffer_width=320
+
+framebuffer_height=240
+
+If you prefer a blurry console nightmare, try 
+
+framebuffer_width=640
+
+framebuffer_height=480
+
+Beware this won't make your LCD bigger, nor it has some retina-like hidden pixels like your iPhone. The program will just squeeze 4 pixels into 1.
+
+Now Ctrl-X and yes to save the changes. Don't get panic if nothing shows up on the screen. Try 
+
+5 Restart
+sudo reboot
+
+6 To insert expansion board to the Raspberry Perry¡£
+
+7 Enter the directory mztx-ext-2.4/src£¬and run the LCD process
+To run, root priviledge is required: 
+sudo ./mztx06a
+
+Now the LCD is working¡£
+The expansion board I2C device default address£º
+LP3943£º0X60
+TSC2003£º0X48
+PCF8563£º0X68
+
+The Driver File is available under linux kernel source drivers directory¡£
+LP3943 is compatible with PCA953X
+TSC2003 is compatible with TSC2007
