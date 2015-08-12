@@ -1,0 +1,1957 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2015-08-12 Wed 00:38 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>mztx06a notes</title>
+<meta  name="generator" content="Org-mode" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="../org-html-themes/styles/bigblow/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="../org-html-themes/styles/bigblow/css/bigblow.css"/>
+<link rel="stylesheet" type="text/css" href="../org-html-themes/styles/bigblow/css/hideshow.css"/>
+<script type="text/javascript" src="../org-html-themes/styles/bigblow/js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="../org-html-themes/styles/bigblow/js/jquery-ui-1.10.2.min.js"></script>
+<script type="text/javascript" src="../org-html-themes/styles/bigblow/js/jquery.localscroll-min.js"></script>
+<script type="text/javascript" src="../org-html-themes/styles/bigblow/js/jquery.scrollTo-1.4.3.1-min.js"></script>
+<script type="text/javascript" src="../org-html-themes/styles/bigblow/js/jquery.zclip.min.js"></script>
+<script type="text/javascript" src="../org-html-themes/styles/bigblow/js/bigblow.js"></script>
+<script type="text/javascript" src="../org-html-themes/styles/bigblow/js/hideshow.js"></script>
+<script type="text/javascript" src="../org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">mztx06a notes</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgheadline1">1. Used Functions</a></li>
+<li><a href="#orgheadline2">2. Used names/words</a></li>
+<li><a href="#orgheadline14">3. Resources</a>
+<ul>
+<li><a href="#orgheadline3">3.1. </a></li>
+<li><a href="#orgheadline4">3.2. </a></li>
+<li><a href="#orgheadline5">3.3. </a></li>
+<li><a href="#orgheadline6">3.4. </a></li>
+<li><a href="#orgheadline7">3.5. pi-mztx-ext-v10-sch.pdf</a></li>
+<li><a href="#orgheadline8">3.6. </a></li>
+<li><a href="#orgheadline9">3.7. </a></li>
+<li><a href="#orgheadline10">3.8. LP3943.pdf</a></li>
+<li><a href="#orgheadline11">3.9. </a></li>
+<li><a href="#orgheadline12">3.10. </a></li>
+<li><a href="#orgheadline13">3.11. ILI9325.pdf</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline17">4. Learned</a>
+<ul>
+<li><a href="#orgheadline15">4.1. Definitions</a></li>
+<li><a href="#orgheadline16">4.2. Pin Descriptions</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1"><span class="section-number-2">1</span> Used Functions</h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li class="on"><code>[X]</code> void LCD<sub>WR</sub><sub>REG</sub>(int index)</li>
+<li class="on"><code>[X]</code> void LCD<sub>WR</sub><sub>CMD</sub>(int index,int val)</li>
+<li class="on"><code>[X]</code> void inline LCD<sub>WR</sub><sub>Data</sub>(int val)</li>
+<li class="on"><code>[X]</code> void write<sub>dot</sub>(char dx,int dy,int color)</li>
+<li class="on"><code>[X]</code> void loadFrameBuffer<sub>diff</sub><sub>320</sub>()
+write<sub>dot</sub></li>
+<li class="on"><code>[X]</code> void LCD<sub>Init</sub>()</li>
+<li class="on"><code>[X]</code> void LCD<sub>test</sub>()</li>
+<li class="on"><code>[X]</code> int main (int argc, char* argv[])
+LCD<sub>Init</sub>
+LCD<sub>test</sub>
+loadFrameBuffer<sub>diff</sub><sub>320</sub></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2"><span class="section-number-2">2</span> Used names/words</h2>
+<div class="outline-text-2" id="text-2">
+<div class="org-src-container">
+
+<pre class="src src-sh">&lt;mztx06a.c sed -e <span style="color: #00ff00;">'</span>
+<span style="color: #00ff00;">s!//.*!!;</span>
+<span style="color: #00ff00;">s!/\*[^*]*\*/!!;</span>
+<span style="color: #00ff00;">s/\(\b[a-zA-Z0-9_]\+\b\)/@\1@/g;</span>
+<span style="color: #00ff00;">s/[^@]*@\([^@]\+\)@[^@]*/\1\n/g</span>
+<span style="color: #00ff00;">'</span> |
+grep <span style="color: #00ff00;">'[a-z]'</span> |
+sort |
+uniq -c |
+sort -nr |
+awk <span style="color: #00ff00;">'BEGIN {OFS="|"} { print "",$1,$2,""}'</span> &gt;&gt; notes.org
+</pre>
+</div>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Important</th>
+<th scope="col" class="org-right">Count</th>
+<th scope="col" class="org-right">Word</th>
+<th scope="col" class="org-left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">35</td>
+<td class="org-right">0x0000</td>
+<td class="org-left">Everything.</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">3</td>
+<td class="org-right">0x0000</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x0000</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">2</td>
+<td class="org-right">0x0001</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x0001</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x0002</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">2</td>
+<td class="org-right">0x0003</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">2</td>
+<td class="org-right">0x0003</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x0006</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">3</td>
+<td class="org-right">0x0007</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x0008</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x0008</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x0009</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x000b</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x000c</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x000d</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x0011</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x0012</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x0013</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x0018</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x0019</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x001F</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x001f</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x0022</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x009d</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x00ef</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">4</td>
+<td class="org-right">0x0100</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x0100</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x0101</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x0101</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x0102</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x0103</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x0103</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x0110</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x0111</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x0113</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x0120</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">2</td>
+<td class="org-right">0x013f</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">2</td>
+<td class="org-right">0x0200</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">2</td>
+<td class="org-right">0x0200</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">2</td>
+<td class="org-right">0x0201</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">2</td>
+<td class="org-right">0x0201</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">5</td>
+<td class="org-right">0x0202</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x0203</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x0204</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">2</td>
+<td class="org-right">0x0210</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">2</td>
+<td class="org-right">0x0210</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">2</td>
+<td class="org-right">0x0211</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">2</td>
+<td class="org-right">0x0211</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">2</td>
+<td class="org-right">0x0212</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">2</td>
+<td class="org-right">0x0212</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">2</td>
+<td class="org-right">0x0213</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">2</td>
+<td class="org-right">0x0213</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x0214</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x0215</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x0216</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x0217</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x0300</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x0301</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x0302</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x0303</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x0304</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x0305</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x0306</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x0307</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x0308</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x0309</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x0400</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x0401</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x0402</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x0403</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x0404</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">2</td>
+<td class="org-right">0x050a</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x07E0</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x07e0</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x07ff</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x0808</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x1021</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x1100</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x1201</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x1230</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x12B8</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x3110</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x3120</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x4027</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x4342</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x5343</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0x7120</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">4</td>
+<td class="org-right">0x8000</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0xF800</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0xe200</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0xf800</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0xf81f</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0xffe0</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">0xffff</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">6</td>
+<td class="org-right">buffer</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">7</td>
+<td class="org-right">diffex</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">7</td>
+<td class="org-right">diffey</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">4</td>
+<td class="org-right">diffmap</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">8</td>
+<td class="org-right">diffsx</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">8</td>
+<td class="org-right">diffsy</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">8</td>
+<td class="org-right">drawmap</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">9</td>
+<td class="org-right">flag</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">No</td>
+<td class="org-right">3</td>
+<td class="org-right">hsize</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">minsum</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">1</td>
+<td class="org-right">nowsum</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">12</td>
+<td class="org-right">numdiff</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">7</td>
+<td class="org-right">quickdiffmap</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">No</td>
+<td class="org-right">3</td>
+<td class="org-right">vsize</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">9</td>
+<td class="org-right">xsize</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Yes</td>
+<td class="org-right">8</td>
+<td class="org-right">ysize</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-orgheadline14" class="outline-2">
+<h2 id="orgheadline14"><span class="section-number-2">3</span> Resources</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3"><span class="section-number-3">3.1</span> <a href="http://solarpower3190.blogspot.com/2014/11/interfacing-mztx06a-22-tft-screen-on.html">http://solarpower3190.blogspot.com/2014/11/interfacing-mztx06a-22-tft-screen-on.html</a></h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+Interfacing MZTX06A 2.2" TFT Screen on Raspberry Pi
+</p>
+
+<p>
+I recently bought a 2.2" TFT screen with SPI interface and 320x240
+pixel resolution on Deal Extreme.  According to the very
+rudimentary documentation it needs to be connected like this :
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">lcd pin</th>
+<th scope="col" class="org-left">lcd names</th>
+<th scope="col" class="org-right">Rpi pin</th>
+<th scope="col" class="org-left">Rpi name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">1</td>
+<td class="org-left">LED+</td>
+<td class="org-right">1</td>
+<td class="org-left">3.3V</td>
+</tr>
+
+<tr>
+<td class="org-right">2</td>
+<td class="org-left">VDD-</td>
+<td class="org-right">17</td>
+<td class="org-left">3.3V</td>
+</tr>
+
+<tr>
+<td class="org-right">3</td>
+<td class="org-left">/RST-</td>
+<td class="org-right">22</td>
+<td class="org-left">GPIO25</td>
+</tr>
+
+<tr>
+<td class="org-right">4</td>
+<td class="org-left">RS-</td>
+<td class="org-right">21</td>
+<td class="org-left">MISO</td>
+</tr>
+
+<tr>
+<td class="org-right">5</td>
+<td class="org-left">/CS-</td>
+<td class="org-right">26</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">6</td>
+<td class="org-left">SCI-</td>
+<td class="org-right">19</td>
+<td class="org-left">MOSI</td>
+</tr>
+
+<tr>
+<td class="org-right">7</td>
+<td class="org-left">SCL-</td>
+<td class="org-right">23</td>
+<td class="org-left">SCLK</td>
+</tr>
+
+<tr>
+<td class="org-right">8</td>
+<td class="org-left">GND</td>
+<td class="org-right">25</td>
+<td class="org-left">GND</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+After getting the MZTX06A software from github :
+</p>
+
+<p>
+<a href="https://github.com/yaolet/mztx06a.git">https://github.com/yaolet/mztx06a.git</a>
+</p>
+
+<p>
+and launching the makefile, the resulting MZTX06A executable
+copies the /dev/fb content to the screen. Here below the result
+when launched directly from rc.local &#x2026;
+</p>
+
+<p>
+In order to match framebuffer and screen resolution, one has to
+modify /boot/config.txt and uncomment the lines with Horizontal
+and vertical screen resolution. Please use 320 and 240 in order to
+avoid blurred screens.
+</p>
+
+<p>
+This method works flawlessly with X. Just startx and
+watch. Unfortunately 320x240 pixels doesn't leave much space for
+actual work. Most user interfaces are not suited for low-res.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline4" class="outline-3">
+<h3 id="orgheadline4"><span class="section-number-3">3.2</span> <a href="http://pan.baidu.com/s/1jGp5mrs">http://pan.baidu.com/s/1jGp5mrs</a></h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+Not in English, so I probably won't be able to make much use of any
+of their resources.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5"><span class="section-number-3">3.3</span> <a href="http://www.banggood.com/MZTX06A-2_2-Inch-IPS-TFT-LCD-Display-Module-For-Raspberry-Pi-p-977388.html">http://www.banggood.com/MZTX06A-2_2-Inch-IPS-TFT-LCD-Display-Module-For-Raspberry-Pi-p-977388.html</a></h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+MZTX06A 2.2 Inch IPS TFT LCD Display Module For Raspberry Pi
+</p>
+
+<p>
+Description:
+</p>
+
+<p>
+Compatible with Raspberry Pi, offering wide viewing angle, high
+brightness, high contrast; Allows you view from any angles, which
+is close to 180 degrees; <b>The SPI core dedicated adapter is
+self-designed timing chip SPI clock generation products available</b>
+<b>to 33MHz</b> , much faster than the other driver chip screen.
+</p>
+
+<p>
+Connection:
+</p>
+
+<ul class="org-ul">
+<li>8 LED + (common anode LED backlight);</li>
+<li>7 VDD (+3.3 V Supply);</li>
+<li>6 / RST (reset pin can be directly connected to +3.3 V provincial IO)S;</li>
+<li>5 RS (command / data indication feet);</li>
+<li>4 / CS (chip select pin can be directly connected to GND province IO);</li>
+<li>3 SCI (serial data pin, which is the SPI MOSI);</li>
+<li>2 SCL (serial clock pin, which is SCK);</li>
+<li>1 GND (ground)</li>
+</ul>
+
+<p>
+Feature:
+</p>
+
+<ul class="org-ul">
+<li>Size: 2.2 inches (5.6cm diagonal);</li>
+<li>Color: 65K colors;</li>
+<li>Resolution: QVGA 320 x 240;</li>
+<li>Interface: SIP, 8-pin 2.54mm single row</li>
+</ul>
+
+<p>
+<b>Note: Probably not an SIP interface, but instead SPI</b>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline6" class="outline-3">
+<h3 id="orgheadline6"><span class="section-number-3">3.4</span> <a href="http://www.panelook.com/MZTX06A_KOE_2.2_LCM_parameter_18856.html">http://www.panelook.com/MZTX06A_KOE_2.2_LCM_parameter_18856.html</a></h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+<b>Note: Disable JavaScript to copy from this domain</b>
+</p>
+
+<p>
+<b>Note: This is a 2.2 inch display. I have no idea which screen I have.</b>
+</p>
+
+<p>
+Mechanical Features
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">Panel Size :</td>
+<td class="org-left">2.2 inch</td>
+</tr>
+
+<tr>
+<td class="org-left">Dot Resolution :</td>
+<td class="org-left">240(RGB)x320 (QVGA)</td>
+</tr>
+
+<tr>
+<td class="org-left">Pixel Configuration :</td>
+<td class="org-left">RGB Vertical Stripe</td>
+</tr>
+
+<tr>
+<td class="org-left">Pixel Density :</td>
+<td class="org-left">180 PPI</td>
+</tr>
+
+<tr>
+<td class="org-left">Aspect Ratio :</td>
+<td class="org-left">3:4 (H:V)</td>
+</tr>
+
+<tr>
+<td class="org-left">Form Factor :</td>
+<td class="org-left">Flat Rectangle Display</td>
+</tr>
+
+<tr>
+<td class="org-left">Dot Pitch :</td>
+<td class="org-left">0.047x0.141 mm (HxV)</td>
+</tr>
+
+<tr>
+<td class="org-left">Pixel Pitch :</td>
+<td class="org-left">0.141x0.141 mm (HxV)</td>
+</tr>
+
+<tr>
+<td class="org-left">Weight :</td>
+<td class="org-left">TBD</td>
+</tr>
+
+<tr>
+<td class="org-left">Active Area :</td>
+<td class="org-left">33.84x45.12 mm (HxV)</td>
+</tr>
+
+<tr>
+<td class="org-left">Bezel Area :</td>
+<td class="org-left">35.04x46.32 mm (HxV)</td>
+</tr>
+
+<tr>
+<td class="org-left">Outline Dimension :</td>
+<td class="org-left">40.1x56.8 mm (HxV)</td>
+</tr>
+
+<tr>
+<td class="org-left">Outline Depth :</td>
+<td class="org-left">2.55 mm</td>
+</tr>
+
+<tr>
+<td class="org-left">Landscape or Portrait :</td>
+<td class="org-left">Portrait type</td>
+</tr>
+
+<tr>
+<td class="org-left">Touch Panel :</td>
+<td class="org-left">Without</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Optical Features
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">Display Mode :</td>
+<td class="org-left">IPS, Normally Black, Transmissive</td>
+</tr>
+
+<tr>
+<td class="org-left">IPS Family:</td>
+<td class="org-left">AAS, ADS, AHVA, FFS, IPS, New Mode2, PLS, SFT, Vistarich</td>
+</tr>
+
+<tr>
+<td class="org-left">VA Family:</td>
+<td class="org-left">ASV, HVA, MVA, PVA, SVA, UV<sup>2</sup> A, VA</td>
+</tr>
+
+<tr>
+<td class="org-left">Brightness :</td>
+<td class="org-left">250 cd/m<sup>2</sup> (Typ.)</td>
+</tr>
+
+<tr>
+<td class="org-left">Contrast Ratio :</td>
+<td class="org-left">300 : 1 (Typ.) (Transmissive)</td>
+</tr>
+
+<tr>
+<td class="org-left">Display Color :</td>
+<td class="org-left">65K ()</td>
+</tr>
+
+<tr>
+<td class="org-left">Response Time :</td>
+<td class="org-left">35 (Typ.)(Tr+Td)</td>
+</tr>
+
+<tr>
+<td class="org-left">Viewing Angle :</td>
+<td class="org-left">85/85/85/85 (Typ.)(CR &gt;= 10) (L/R/U/D)</td>
+</tr>
+
+<tr>
+<td class="org-left">Viewing Direction :</td>
+<td class="org-left">Symmetry</td>
+</tr>
+
+<tr>
+<td class="org-left">White color Chromaticity :</td>
+<td class="org-left">Wx:0.320; Wy:0.350</td>
+</tr>
+
+<tr>
+<td class="org-left">White Variation :</td>
+<td class="org-left">1.25/1.43 (Typ./Max.)(9 points) Luminance Variation = Maximum / Minimum</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Electronics Feature
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">Vertical Frequency :</td>
+<td class="org-left">85Hz</td>
+</tr>
+
+<tr>
+<td class="org-left">120Hz (60HZ Input) :</td>
+<td class="org-left">Embedded MEMC Circuit</td>
+</tr>
+
+<tr>
+<td class="org-left">120Hz+120Hz :</td>
+<td class="org-left">120Hz Panel+120Hz Backlight</td>
+</tr>
+
+<tr>
+<td class="org-left">240Hz (60HZ Input) :</td>
+<td class="org-left">Embedded MEMC Circuit</td>
+</tr>
+
+<tr>
+<td class="org-left">Reverse Scan :</td>
+<td class="org-left">No</td>
+</tr>
+
+<tr>
+<td class="org-left">Driver IC :</td>
+<td class="org-left">Built-in BD663474</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Backlight System
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">Lamp Position :</td>
+<td class="org-left">Edge light type Front view positon</td>
+</tr>
+
+<tr>
+<td class="org-left">Lamp Type :</td>
+<td class="org-left">WLED</td>
+</tr>
+
+<tr>
+<td class="org-left">Lamp Amount :</td>
+<td class="org-left">1S3P   8S6P: 8 Serial, 6 Parallel</td>
+</tr>
+
+<tr>
+<td class="org-left">Lamp Shape :</td>
+<td class="org-left">3 strings</td>
+</tr>
+
+<tr>
+<td class="org-left">Lamp Voltage :</td>
+<td class="org-left">3.2/3.5V (Typ./Max.)</td>
+</tr>
+
+<tr>
+<td class="org-left">Lamp Current :</td>
+<td class="org-left">18mA (Typ.)</td>
+</tr>
+
+<tr>
+<td class="org-left">Interface Type :</td>
+<td class="org-left">Included in panel signal interface</td>
+</tr>
+
+<tr>
+<td class="org-left">Lamp Driver Board :</td>
+<td class="org-left">No</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Signal Interface
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">Signal Category :</td>
+<td class="org-left">CPU</td>
+</tr>
+
+<tr>
+<td class="org-left">Signal Class :</td>
+<td class="org-left">CPU</td>
+</tr>
+
+<tr>
+<td class="org-left">Input Voltage for Panel :</td>
+<td class="org-left">2.8/3.3V (Typ.)(IOVCC/VCI)</td>
+</tr>
+
+<tr>
+<td class="org-left">Input Current for Panel :</td>
+<td class="org-left">TBD</td>
+</tr>
+
+<tr>
+<td class="org-left">Interface Type :</td>
+<td class="org-left">FPC</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Signal Interface
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Brand</th>
+<th scope="col" class="org-left">Model</th>
+<th scope="col" class="org-left">Pin Pitch</th>
+<th scope="col" class="org-left">Pins</th>
+<th scope="col" class="org-left">Amount</th>
+<th scope="col" class="org-left">Configuration</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">0.3mm</td>
+<td class="org-left">41 pins</td>
+<td class="org-left">1 pcs</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-orgheadline7" class="outline-3">
+<h3 id="orgheadline7"><span class="section-number-3">3.5</span> pi-mztx-ext-v10-sch.pdf</h3>
+<div class="outline-text-3" id="text-3-5">
+<iframe src="resources/pi-mztx-ext-v10-sch.pdf"
+        style="width: 100%; height: 500px">
+</iframe>
+</div>
+</div>
+
+<div id="outline-container-orgheadline8" class="outline-3">
+<h3 id="orgheadline8"><span class="section-number-3">3.6</span> <a href="http://helloraspberrypi.blogspot.com/2013/12/tontec-24-inch-tft-lcd-240x320-rgb.html">http://helloraspberrypi.blogspot.com/2013/12/tontec-24-inch-tft-lcd-240x320-rgb.html</a></h3>
+<div class="outline-text-3" id="text-3-6">
+<p>
+Tontec 2.4-inch TFT LCD 240x320 RGB Pixels Touch Screen Display
+Monitor For Raspberry Pi
+</p>
+
+<p>
+This Raspberry Pi Screen is designed for raspberry pi tailored a
+expansion board, set LCD, touch, IO expansion, RTC functions in
+one, greatly enriched the raspberry pie can learn playability.
+</p>
+
+<p>
+"Display Part" use <b>Hitachi's IPS technology company of the LCD</b>,
+the screen viewing angle is large, close to 180 degrees; very high
+brightness and contrast, color of the screen is 8,16 I80 parallel,
+in order to save resources and high-speed IO the transmission of
+data, <b>the owner after two months of struggle with CPLD design a
+SPI-I80 parallel converter</b>, the measured SPI clock can reach 120M.
+</p>
+
+<p>
+"Touch Part" adopts TI (Texas Instruments) company TSC2003 chip,
+the chip I2C Interface 4-wire resistive controller, also with a
+2-way BAT and AIN, can monitor 2-way 2-way voltage and other
+signals.
+</p>
+
+<p>
+"IO extension Part" using <b>NS (National Semiconductor)'s LP3943
+the I2C interface chip 16 IO expansion</b>, which with the PWM circuit
+can drive the LED.
+</p>
+
+<p>
+"RTC real time clock" using NXP's PCF8563, the chip I2C interface,
+with a calendar. (This section is optional, standard shipping is
+blank, the customer can DIY)
+</p>
+
+<ul class="org-ul">
+<li>Size: 2.4 inches</li>
+<li>Color: 65K colors</li>
+<li>Resolution: QVGA 240X320</li>
+<li>Back light: 3 LED Parallel</li>
+<li>Interface: SIP16, 8-pin 2.54mm single row</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline9" class="outline-3">
+<h3 id="orgheadline9"><span class="section-number-3">3.7</span> <a href="http://www.circuitbasics.com/setup-lcd-touchscreen-raspberry-pi/">http://www.circuitbasics.com/setup-lcd-touchscreen-raspberry-pi/</a></h3>
+<div class="outline-text-3" id="text-3-7">
+<p>
+In this tutorial, I will walk you through the process of installing
+an LCD touchscreen on the Raspberry Pi, step by step. Many LCD
+touchscreens for the Raspberry Pi include an image file that you
+can write to your SD card and get up and running pretty
+quickly. But what if you want to run a clean version of Raspbian,
+without all the bloatware included on the manufacturer's image?
+Also, what if you want to install a different OS such as Rasbmc or
+XBMC? In these cases, you should follow this tutorial and go
+through the steps to configure it on your own. This works on the
+Raspberry Pi 2 Model B as well as older versions of the Raspberry
+Pi. Don't worry, it's not that hard!
+</p>
+
+<p>
+I am using the Waveshare 3.2" TFT (thin-film transistor) LCD. Many
+other LCD screens are supported by this process, but check here to
+see if your screen is supported by the FBTFT driver to make
+sure. Scroll down the file and look for an abbreviated name of the
+screen you are using:
+</p>
+
+<p>
+<b>lots more omitted</b>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline10" class="outline-3">
+<h3 id="orgheadline10"><span class="section-number-3">3.8</span> LP3943.pdf</h3>
+<div class="outline-text-3" id="text-3-8">
+<p>
+<b>This device manages the backlight.</b>
+</p>
+
+<iframe src="resources/LP3943.pdf"
+        style="width: 100%; height: 500px">
+</iframe>
+</div>
+</div>
+
+<div id="outline-container-orgheadline11" class="outline-3">
+<h3 id="orgheadline11"><span class="section-number-3">3.9</span> <a href="http://electronics.stackexchange.com/questions/123038/what-is-the-difference-between-tft-lcd-interfaces">http://electronics.stackexchange.com/questions/123038/what-is-the-difference-between-tft-lcd-interfaces</a></h3>
+<div class="outline-text-3" id="text-3-9">
+<p>
+I am looking at driving a small TFT and have found that the driver
+chip supports various interface methods, however I can't see why I
+would choose one over another.
+</p>
+
+<p>
+The options are:
+</p>
+
+<ul class="org-ul">
+<li>i80</li>
+<li>SPI</li>
+<li>VSYNC</li>
+<li>RGB</li>
+</ul>
+
+<p>
+Can anyone describe the pros and cons of the different interfaces?
+</p>
+
+<p>
+In my specific case I want to drive an ILI9320 with a PIC32 via the
+Parallel Master Port.
+</p>
+
+<p>
+-&#x2014;
+</p>
+
+<p>
+The "i80" parallel interface is simple and fast, and can be driven
+by external memory interfaces on some microcontrollers. However,
+it's a wide parallel bus, and requires a lot of pins to drive.
+</p>
+
+<p>
+SPI requires very few pins to drive, and is available as a hardware
+peripheral on many microcontrollers. It's slower than the parallel
+interface, though.
+</p>
+
+<p>
+The VSYNC and RGB interfaces are mainly useful for displaying
+streaming video from live sources (e.g, in a camera). They aren't
+useful outside special situations.
+</p>
+
+<p>
+Given that you're using a PIC32 with what sounds like a big
+parallel port, the i80 interface is probably ideal.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline12" class="outline-3">
+<h3 id="orgheadline12"><span class="section-number-3">3.10</span> <a href="http://www.dx.com/p/mztx-pi-ext2-2-2-3-ips-full-angle-lcd-display-extension-board-module-for-raspberry-pi-green-282645?utm_source=dx&amp;utm_medium=albums&amp;utm_campaign=en20140603raspberrypiaccessories#.VcrDO-KUzGc">http://www.dx.com/p/mztx-pi-ext2-2-2-3-ips-full-angle-lcd-display-extension-board-module-for-raspberry-pi-green-282645?utm_source=dx&amp;utm_medium=albums&amp;utm_campaign=en20140603raspberrypiaccessories#.VcrDO-KUzGc</a></h3>
+<div class="outline-text-3" id="text-3-10">
+<p>
+With LCD display, touch, IO extension, RTC in one; uses IPS LCD
+180' screen; hight brightness, contrast, bright color; 8, 16 digit
+I80 parallel port; the SPI-I80 parallel port adapter can reach 120m
+max.; the touch part uses TI TSC2003 chip which is I2C 4-cord
+resistance controller and is with 2-CH BAT, AIN to monitor 2-CH
+voltage and 2-CH signals; the IO uses NS LP3943 which is I2C 16-CH
+IO extension and with PWM to drive LED User Manual:
+</p>
+
+<pre class="example">
+2.4 inch expansion board using the steps:
+
+1 To copy mztx-ext-2.4.rar to Raspberry Perry and decompression it£¬after decompression the directory is mztx-ext-2.4
+
+2 Enter the directory mztx-ext-2.4/src
+
+3 make
+
+4 Revise the file config.txt¡£
+just type
+
+sudo pico /boot/config.txt
+
+try fix your eyeballs on something look like:
+
+# uncomment to force a console size. By default it will be display's size minus
+
+# overscan.
+
+# framebuffer_width=xxxx
+
+# framebuffer_height=xxx
+
+now uncomment the last 2 lines and change it to either
+
+framebuffer_width=320
+
+framebuffer_height=240
+
+If you prefer a blurry console nightmare, try
+
+framebuffer_width=640
+
+framebuffer_height=480
+
+Beware this won't make your LCD bigger, nor it has some retina-like hidden pixels like your iPhone. The program will just squeeze 4 pixels into 1.
+
+Now Ctrl-X and yes to save the changes. Don't get panic if nothing shows up on the screen. Try
+
+5 Restart
+sudo reboot
+
+6 To insert expansion board to the Raspberry Perry¡£
+
+7 Enter the directory mztx-ext-2.4/src£¬and run the LCD process
+To run, root priviledge is required:
+sudo ./mztx06a
+
+Now the LCD is working¡£
+The expansion board I2C device default address£º
+LP3943£º0X60
+TSC2003£º0X48
+PCF8563£º0X68
+
+The Driver File is available under linux kernel source drivers directory¡£
+LP3943 is compatible with PCA953X
+TSC2003 is compatible with TSC2007
+</pre>
+
+<p>
+General
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">Brand</td>
+<td class="org-left">N/A</td>
+</tr>
+
+<tr>
+<td class="org-left">Model</td>
+<td class="org-left">MZTX-PI-EXT2.2</td>
+</tr>
+
+<tr>
+<td class="org-left">Quantity</td>
+<td class="org-left">1 Piece</td>
+</tr>
+
+<tr>
+<td class="org-left">Color</td>
+<td class="org-left">Green</td>
+</tr>
+
+<tr>
+<td class="org-left">Material</td>
+<td class="org-left">FR4</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Specification
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">English Manual / Spec</td>
+<td class="org-left">No</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Dimensions &amp; Weight
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">Dimensions</td>
+<td class="org-left">3.58 in x 2.2 in x 0.59 in (9.1 cm x 5.6 cm x 1.5 cm)</td>
+</tr>
+
+<tr>
+<td class="org-left">Weight</td>
+<td class="org-left">1.34 oz (38 g)</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+<b>Dimensions: 3.58 in x 2.2 in = 4.2 inch diagonal</b>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline13" class="outline-3">
+<h3 id="orgheadline13"><span class="section-number-3">3.11</span> ILI9325.pdf</h3>
+<div class="outline-text-3" id="text-3-11">
+<p>
+<b>Describes a screen that's very similar to this one</b>
+</p>
+
+<p>
+<b>Adafruit URL: <a href="https://www.adafruit.com/products/335">https://www.adafruit.com/products/335</a></b>
+</p>
+
+<iframe src="resources/ILI9325.pdf"
+        style="width: 100%; height: 500px">
+</iframe>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline17" class="outline-2">
+<h2 id="orgheadline17"><span class="section-number-2">4</span> Learned</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-orgheadline15" class="outline-3">
+<h3 id="orgheadline15"><span class="section-number-3">4.1</span> Definitions</h3>
+<div class="outline-text-3" id="text-4-1">
+<dl class="org-dl">
+<dt>SPI</dt><dd>Serial Peripheral Interface</dd>
+<dt>MISO</dt><dd>Master Input, Slave Output (output from slave)</dd>
+<dt>MOSI</dt><dd>Master Output, Slave Input (output from master)</dd>
+<dt>CS / nCS</dt><dd>Chip Select, where n denotes a different active value
+of high / low (possibly wrong order)</dd>
+</dl>
+</div>
+</div>
+<div id="outline-container-orgheadline16" class="outline-3">
+<h3 id="orgheadline16"><span class="section-number-3">4.2</span> Pin Descriptions</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+<b>Probably wrong. Really can't tell. Woo!</b>
+</p>
+
+<dl class="org-dl">
+<dt>SPICS</dt><dd>SPI Chip Select or Slave Select (nCS)</dd>
+<dt>SPIRS</dt><dd>GND / Ground</dd>
+<dt>SPIRST</dt><dd>SCLK / Serial Clock for synchronization</dd>
+<dt>(no term)</dt><dd>SPISCL</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Created: 2015-08-12 Wed 00:38</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
