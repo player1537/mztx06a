@@ -139,3 +139,42 @@
   | No        |     3 |        vsize |             |
   | Yes       |     9 |        xsize |             |
   | Yes       |     8 |        ysize |             |
+* Resources
+  - http://solarpower3190.blogspot.com/2014/11/interfacing-mztx06a-22-tft-screen-on.html
+
+    #+BEGIN_QUOTE
+    Interfacing MZTX06A 2.2" TFT Screen on Raspberry Pi
+
+    I recently bought a 2.2" TFT screen with SPI interface and 320x240
+    pixel resolution on Deal Extreme.  According to the very
+    rudimentary documentation it needs to be connected like this :
+
+    | lcd pin | lcd names | Rpi pin | Rpi name |
+    |---------+-----------+---------+----------|
+    |       1 | LED+      |       1 | 3.3V     |
+    |       2 | VDD-      |      17 | 3.3V     |
+    |       3 | /RST-     |      22 | GPIO25   |
+    |       4 | RS-       |      21 | MISO     |
+    |       5 | /CS-      |      26 |          |
+    |       6 | SCI-      |      19 | MOSI     |
+    |       7 | SCL-      |      23 | SCLK     |
+    |       8 | GND       |      25 | GND      |
+
+    After getting the MZTX06A software from github :
+
+    https://github.com/yaolet/mztx06a.git
+
+    and launching the makefile, the resulting MZTX06A executable
+    copies the /dev/fb content to the screen. Here below the result
+    when launched directly from rc.local ...
+
+    In order to match framebuffer and screen resolution, one has to
+    modify /boot/config.txt and uncomment the lines with Horizontal
+    and vertical screen resolution. Please use 320 and 240 in order to
+    avoid blurred screens.
+
+    This method works flawlessly with X. Just startx and
+    watch. Unfortunately 320x240 pixels doesn't leave much space for
+    actual work. Most user interfaces are not suited for low-res.
+
+    #+END_QUOTE
